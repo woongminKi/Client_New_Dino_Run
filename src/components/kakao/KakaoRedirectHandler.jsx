@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function KakaoRedirectHandler() {
+  const navigate = useNavigate();
+
   useEffect(() => {
     async function handleRedirect() {
       const params = new URL(document.location.toString()).searchParams;
@@ -25,6 +28,9 @@ export default function KakaoRedirectHandler() {
       });
 
       console.log("res:::", res);
+      if (res.status === 200) {
+        navigate("/main");
+      }
     }
     handleRedirect();
   }, []);
