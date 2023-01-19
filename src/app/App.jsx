@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "../components/Home";
 import Main from "../components/Main";
-import KakaoRedirectHandler from "../components/kakao/KakaoRedirectHandler";
+import KakaoRedirectHandler from "../components/hooks/queries/mutations/KakaoRedirectHandler";
 
 function App() {
   return (
