@@ -11,7 +11,7 @@ function App() {
         <Route path="/main" element={<Main />} />
 
         <Route
-          path="/oauth/callback/kakao"
+          path="/oauth/kakao/callback"
           element={<KakaoRedirectHandler />}
         />
       </Routes>
