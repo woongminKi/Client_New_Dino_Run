@@ -1,6 +1,7 @@
 import axios from "axios";
 import { all, fork, put, takeLatest, takeEvery } from "redux-saga/effects";
 import { loginRequest, loginFailure } from "./authSlice";
+import { setCookie } from "../../../utils/cookies";
 
 function* userLogin({ payload }) {
   const { data } = payload.res;
@@ -18,6 +19,21 @@ function* userLogin({ payload }) {
         accessTokenExpiresIn,
         refreshTokenExpiresIn,
       },
+    });
+
+    setCookie("accessToken", accessToken, {
+      path: "/",
+      expires: accessTokenExpiresIn,
+      sameSite: "none",
+      secure: true,
+      httpOnly: true,
+    });
+    setCookie("refreshToken", refreshToken, {
+      path: "/",
+      expires: refreshTokenExpiresIn,
+      sameSite: "none",
+      secure: true,
+      httpOnly: true,
     });
   } catch (err) {
     yield put(loginFailure(err));
