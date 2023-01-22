@@ -22,7 +22,7 @@ export default function Home() {
 const Container = styled.div`
   background: url(https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F993F4C3359C52BF5379685);
   background-repeat: repeat-y;
-  background-size: 100%;
+  background-size: 100% 300px;
   background-position: center;
   top: 0;
   left: 0;
