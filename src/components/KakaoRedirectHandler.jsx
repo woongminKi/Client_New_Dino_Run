@@ -2,11 +2,13 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequest, loginSuccess } from "./features/auth/authSlice";
+import { useCookies } from "react-cookie";
 
 import qs from "qs";
 import axios from "axios";
 
 export default function KakaoRedirectHandler() {
+  const [cookies, setCookie] = useCookies(["name"]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loginStatus = useSelector((state) => state.auth.loginStatus);
@@ -35,6 +37,21 @@ export default function KakaoRedirectHandler() {
 
       window.Kakao.init(restAPIKey);
       window.Kakao.Auth.setAccessToken(res.data.access_token);
+      setCookie("accessToken", res.data.access_token, {
+        path: "/",
+        sameSite: "none",
+        secure: true,
+        // httpOnly: true,
+        maxAge: 604800,
+      });
+
+      setCookie("refreshToken", res.data.refresh_token, {
+        path: "/",
+        sameSite: "none",
+        secure: true,
+        // httpOnly: true,
+        maxAge: 604800,
+      });
 
       if (!loginStatus) {
         dispatch(loginRequest({ res }));

@@ -13,27 +13,12 @@ function* userLogin({ payload }) {
 
   try {
     yield axios.post("http://localhost:8000/user/login", {
-      header: {
+      headers: {
         accessToken,
         refreshToken,
         accessTokenExpiresIn,
         refreshTokenExpiresIn,
       },
-    });
-
-    setCookie("accessToken", accessToken, {
-      path: "/",
-      expires: accessTokenExpiresIn,
-      sameSite: "none",
-      secure: true,
-      httpOnly: true,
-    });
-    setCookie("refreshToken", refreshToken, {
-      path: "/",
-      expires: refreshTokenExpiresIn,
-      sameSite: "none",
-      secure: true,
-      httpOnly: true,
     });
   } catch (err) {
     yield put(loginFailure(err));
@@ -41,7 +26,7 @@ function* userLogin({ payload }) {
 }
 
 function* watchLogin() {
-  yield takeEvery(loginRequest, userLogin);
+  yield takeLatest(loginRequest, userLogin);
 }
 
 export default function* authSaga() {

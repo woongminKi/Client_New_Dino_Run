@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userInfoRequest } from "./features/user/userSlice";
 import { loginSuccess } from "./features/auth/authSlice";
+import { roomRegister, totalRoomUsers } from "./features/room/roomSlice";
 import RoomModal from "./modal/RoomModal";
 import styled from "styled-components";
 
@@ -16,6 +17,8 @@ export default function Main() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loginStatus = useSelector((state) => state.auth.loginStatus);
+  const roomStatus = useSelector((state) => state.room);
+  console.log("room 상태:", roomStatus);
 
   const getProfile = async () => {
     try {
@@ -31,9 +34,9 @@ export default function Main() {
     }
   };
 
-  if (userId && nickName && profileImage) {
-    dispatch(userInfoRequest({ userId, nickName, profileImage }));
-  }
+  // if (userId && nickName && profileImage) {
+  //   dispatch(userInfoRequest({ userId, nickName, profileImage }));
+  // }
 
   const handleOpenRoomModal = () => {
     setIsOpenModal(true);
@@ -45,11 +48,19 @@ export default function Main() {
 
   const handleMakeRoom = () => {
     setIsOpenModal(false);
+    dispatch(roomRegister({ title, userId, nickName, profileImage }));
+    dispatch(totalRoomUsers({ userId }));
   };
 
   useEffect(() => {
     getProfile();
   }, []);
+
+  useEffect(() => {
+    if (userId && nickName && profileImage) {
+      dispatch(userInfoRequest({ userId, nickName, profileImage }));
+    }
+  }, [dispatch, nickName, profileImage, userId]);
 
   return (
     <>
