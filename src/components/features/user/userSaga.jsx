@@ -12,6 +12,7 @@ function* userInfo({ payload }) {
       profileImage,
     });
   } catch (err) {
+    console.log("user saga Error exist: ", err);
     yield put(userInfoFailure(err));
   }
 }

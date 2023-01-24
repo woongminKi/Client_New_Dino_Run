@@ -10,6 +10,7 @@ import room from "../components/features/room/roomSlice";
 import authSaga from "../components/features/auth/authSaga";
 import userSaga from "../components/features/user/userSaga";
 import roomSaga from "../components/features/room/roomSaga";
+import { gameSocketSaga } from "../modules/useSocket";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -20,7 +21,7 @@ const reducer = combineReducers({
 });
 
 function* rootSaga() {
-  yield all([authSaga(), userSaga(), roomSaga()]);
+  yield all([authSaga(), userSaga(), roomSaga(), gameSocketSaga()]);
 }
 
 const store = configureStore({

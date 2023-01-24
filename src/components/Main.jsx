@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
 import { userInfoRequest } from "./features/user/userSlice";
-import { loginSuccess } from "./features/auth/authSlice";
 import { roomRegister, totalRoomUsers } from "./features/room/roomSlice";
 import RoomModal from "./modal/RoomModal";
-import styled from "styled-components";
+import { MAIN_COLOR_1 } from "../utils/color";
+import { socketAction } from "../modules/useSocket";
 
 export default function Main() {
   const [userId, setUserId] = useState("");
@@ -18,7 +20,7 @@ export default function Main() {
   const navigate = useNavigate();
   const loginStatus = useSelector((state) => state.auth.loginStatus);
   const roomStatus = useSelector((state) => state.room);
-  console.log("room 상태:", roomStatus);
+  const { roomList } = roomStatus;
 
   const getProfile = async () => {
     try {
@@ -34,10 +36,6 @@ export default function Main() {
     }
   };
 
-  // if (userId && nickName && profileImage) {
-  //   dispatch(userInfoRequest({ userId, nickName, profileImage }));
-  // }
-
   const handleOpenRoomModal = () => {
     setIsOpenModal(true);
   };
@@ -49,7 +47,12 @@ export default function Main() {
   const handleMakeRoom = () => {
     setIsOpenModal(false);
     dispatch(roomRegister({ title, userId, nickName, profileImage }));
-    dispatch(totalRoomUsers({ userId }));
+    dispatch(totalRoomUsers({ title, userId, nickName, profileImage }));
+  };
+
+  const handleGoToRoom = (userId) => {
+    socketAction.joinRoom({ title, userId, nickName, profileImage });
+    navigate(`/readyRoom/${userId}`);
   };
 
   useEffect(() => {
@@ -65,7 +68,6 @@ export default function Main() {
   return (
     <>
       <Container>
-        <div>{userId}</div>
         <Header>
           <ProfileWapper>
             <ProfileImage src={profileImage} alt="프로필 사진" />
@@ -75,23 +77,46 @@ export default function Main() {
             방 만들기
           </RoomMakeButton>
         </Header>
-      </Container>
 
-      {isOpenModal && (
-        <RoomModal isMade={handleMakeRoom} isClosed={handleCancleRoom}>
-          {
-            <form>
-              제목:
-              <input
-                type="text"
-                name="roomTitle"
-                placeholder="방 제목을 입력해주세요."
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </form>
-          }
-        </RoomModal>
-      )}
+        {isOpenModal && (
+          <RoomModal isMade={handleMakeRoom} isClosed={handleCancleRoom}>
+            {
+              <form>
+                제목:
+                <input
+                  type="text"
+                  name="roomTitle"
+                  placeholder="방 제목을 입력해주세요."
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+              </form>
+            }
+          </RoomModal>
+        )}
+
+        <RoomContainer>
+          {roomList.map((room) => {
+            console.log("리스트:", room);
+            return (
+              <RoomWrapper key={room.title}>
+                <RoomUserImage
+                  src={room.profileImage}
+                  alt="유저 프로필 이미지"
+                />
+                <ContentsWrapper>
+                  <RoomTitle>제목: {room.title}</RoomTitle>
+                  <EnterButton
+                    className="enter-button"
+                    onClick={() => handleGoToRoom(room.userId)}
+                  >
+                    입장
+                  </EnterButton>
+                </ContentsWrapper>
+              </RoomWrapper>
+            );
+          })}
+        </RoomContainer>
+      </Container>
     </>
   );
 }
@@ -117,6 +142,7 @@ const Header = styled.div`
   .make-room:hover {
     padding: 15px 50px 15px 50px;
     transition: all 0.2s linear 0s;
+    color: ${MAIN_COLOR_1};
   }
 `;
 
@@ -144,4 +170,45 @@ const RoomMakeButton = styled.button`
   transition: 0.3s;
   font-size: 18px;
   font-weight: 50;
+`;
+
+const RoomContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const RoomWrapper = styled.div`
+  display: flex;
+  margin: 10px;
+  border-radius: 0.5rem;
+  width: 300px;
+  height: 150px;
+  background-color: white;
+`;
+
+const RoomUserImage = styled.img`
+  width: 150px;
+  height: 100%;
+`;
+
+const RoomTitle = styled.div`
+  font-weight: 500;
+  font-family: NanumGothic;
+`;
+
+const EnterButton = styled.button`
+  margin-top: 25px;
+  width: 130px;
+  height: 30px;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.5rem;
+`;
+
+const ContentsWrapper = styled.div`
+  margin: 55px 0 0 10px;
+  .enter-button: hover {
+    transition: all 0.2s linear 0s;
+    color: ${MAIN_COLOR_1};
+  }
 `;

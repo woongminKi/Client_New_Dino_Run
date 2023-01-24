@@ -1,7 +1,6 @@
 import axios from "axios";
 import { all, fork, put, takeLatest, takeEvery } from "redux-saga/effects";
 import { loginRequest, loginFailure } from "./authSlice";
-import { setCookie } from "../../../utils/cookies";
 
 function* userLogin({ payload }) {
   const { data } = payload.res;

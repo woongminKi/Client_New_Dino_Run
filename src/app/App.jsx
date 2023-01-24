@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "../components/Home";
 import Main from "../components/Main";
-import Lobby from "../components/Lobby";
+import ReadyRoom from "../components/game/ReadyRoom";
 import KakaoRedirectHandler from "../components/KakaoRedirectHandler";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/main" element={<Main />} />
-        <Route path="/lobby" element={<Lobby />} />
+        <Route path="/readyRoom/:roomid" element={<ReadyRoom />} />
 
         <Route
           path="/oauth/kakao/callback"

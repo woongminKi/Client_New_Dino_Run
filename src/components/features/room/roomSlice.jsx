@@ -10,6 +10,7 @@ const initialState = {
   playStatus: false,
   isMadeRoomSuccess: false,
   roomList: [],
+  roomDbArray: [],
   error: null,
 };
 
@@ -24,20 +25,35 @@ export const roomSlice = createSlice({
       state.roomList = state.roomList.concat(action.payload);
     },
     totalRoomUsers: (state, action) => {
-      state.users = state.users.concat(action.payload.userId);
-      state.userCount = state.userCount + 1;
+      if (!state.users.includes(action.payload.userId)) {
+        state.users = state.users.concat(action.payload);
+        state.userCount = state.userCount + 1;
+      }
     },
     makeRoomSuccess: (state) => {
       state.isMadeRoomSuccess = true;
+    },
+    joinRoom: (state, action) => {
+      console.log("action: ", action);
     },
     clearRoom: (state) => {
       state.users = [];
       state.roomList = [];
       state.userCount = 0;
+      state.roomDbArray = [];
+    },
+    responseRoomDB: (state, action) => {
+      state.roomDbArray = action.payload;
     },
   },
 });
 
-export const { roomRegister, totalRoomUsers, makeRoomSuccess, clearRoom } =
-  roomSlice.actions;
+export const {
+  roomRegister,
+  totalRoomUsers,
+  makeRoomSuccess,
+  joinRoom,
+  clearRoom,
+  responseRoomDB,
+} = roomSlice.actions;
 export default roomSlice.reducer;
