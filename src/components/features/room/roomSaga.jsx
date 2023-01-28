@@ -1,6 +1,6 @@
 import axios from "axios";
 import { all, fork, put, takeLatest } from "redux-saga/effects";
-import { roomRegister, responseRoomDB } from "./roomSlice";
+import { roomRegister, responseRoomDB, fetchRoomDB } from "./roomSlice";
 import { getCookie } from "../../../utils/cookies";
 
 function* roomInfo({ payload }) {
@@ -27,17 +27,37 @@ function* roomInfo({ payload }) {
         },
       }
     );
-    console.log("getRoomArray::", getRoomArray);
+
     yield put(responseRoomDB(getRoomArray.data));
   } catch (err) {
     console.log("Room saga Error exist: ", err);
   }
 }
 
+function* fetchDBList({ payload }) {
+  const { userId } = payload;
+
+  const getRoomArray = yield axios.get(
+    `http://localhost:8000/rooms/${userId}`,
+    {
+      headers: {
+        accessAuthorization: `${getCookie("accessToken")}`,
+        refreshAuthorization: `${getCookie("refreshToken")}`,
+      },
+    }
+  );
+
+  yield put(responseRoomDB(getRoomArray.data));
+}
+
 function* watchRoomInfo() {
   yield takeLatest(roomRegister, roomInfo);
 }
 
+function* watchFetchRoomDB() {
+  yield takeLatest(fetchRoomDB, fetchDBList);
+}
+
 export default function* roomSaga() {
-  yield all([fork(watchRoomInfo)]);
+  yield all([fork(watchRoomInfo), fork(watchFetchRoomDB)]);
 }
