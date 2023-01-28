@@ -4,10 +4,20 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { userInfoRequest } from "./features/user/userSlice";
-import { roomRegister, totalRoomUsers } from "./features/room/roomSlice";
+import {
+  roomRegister,
+  totalRoomUsers,
+  fetchRoomDB,
+  saveMyInfoData,
+} from "./features/room/roomSlice";
+import {
+  readyRequest,
+  otherPlayerReadyRequest,
+} from "./features/game/gameSlice";
 import RoomModal from "./modal/RoomModal";
 import { MAIN_COLOR_1 } from "../utils/color";
 import { socketAction } from "../modules/useSocket";
+import Header from "./Header";
 
 export default function Main() {
   const [userId, setUserId] = useState("");
@@ -18,9 +28,9 @@ export default function Main() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const loginStatus = useSelector((state) => state.auth.loginStatus);
   const roomStatus = useSelector((state) => state.room);
-  const { roomList } = roomStatus;
+  const { roomDbArray } = roomStatus;
+  const myInfo = { userId, nickName, profileImage };
 
   const getProfile = async () => {
     try {
@@ -50,33 +60,46 @@ export default function Main() {
     dispatch(totalRoomUsers({ title, userId, nickName, profileImage }));
   };
 
-  const handleGoToRoom = (userId) => {
-    socketAction.joinRoom({ title, userId, nickName, profileImage });
+  const handleGoToRoom = (data) => {
+    const roomId = data._id;
+    const title = data.roomInfo.title;
+    const userId = data.author.id;
+    const { nickName, profileImage } = data.author;
+
+    socketAction.joinRoom({
+      title,
+      userId,
+      nickName,
+      profileImage,
+      roomId,
+      myInfo,
+    });
     navigate(`/readyRoom/${userId}`);
   };
 
   useEffect(() => {
     getProfile();
+    dispatch(fetchRoomDB(userId));
+    dispatch(readyRequest(false));
+    dispatch(otherPlayerReadyRequest(false));
   }, []);
 
   useEffect(() => {
     if (userId && nickName && profileImage) {
       dispatch(userInfoRequest({ userId, nickName, profileImage }));
+      dispatch(saveMyInfoData(myInfo));
     }
   }, [dispatch, nickName, profileImage, userId]);
 
   return (
     <>
       <Container>
-        <Header>
-          <ProfileWapper>
-            <ProfileImage src={profileImage} alt="프로필 사진" />
-            <UserName>{nickName}</UserName>
-          </ProfileWapper>
-          <RoomMakeButton className="make-room" onClick={handleOpenRoomModal}>
-            방 만들기
-          </RoomMakeButton>
-        </Header>
+        <Header
+          image={profileImage}
+          name={nickName}
+          func={handleOpenRoomModal}
+          children={"방만들기"}
+        />
 
         {isOpenModal && (
           <RoomModal isMade={handleMakeRoom} isClosed={handleCancleRoom}>
@@ -95,26 +118,29 @@ export default function Main() {
         )}
 
         <RoomContainer>
-          {roomList.map((room) => {
-            console.log("리스트:", room);
-            return (
-              <RoomWrapper key={room.title}>
-                <RoomUserImage
-                  src={room.profileImage}
-                  alt="유저 프로필 이미지"
-                />
-                <ContentsWrapper>
-                  <RoomTitle>제목: {room.title}</RoomTitle>
-                  <EnterButton
-                    className="enter-button"
-                    onClick={() => handleGoToRoom(room.userId)}
-                  >
-                    입장
-                  </EnterButton>
-                </ContentsWrapper>
-              </RoomWrapper>
-            );
-          })}
+          {roomDbArray
+            .slice(0)
+            .reverse()
+            .map((roomArr) => {
+              // console.log("리스트:", roomArr);
+              return (
+                <RoomWrapper key={roomArr._id}>
+                  <RoomUserImage
+                    src={roomArr.author.profileImage}
+                    alt="유저 프로필 이미지"
+                  />
+                  <ContentsWrapper>
+                    <RoomTitle>제목: {roomArr.roomInfo.title}</RoomTitle>
+                    <EnterButton
+                      className="enter-button"
+                      onClick={() => handleGoToRoom(roomArr)}
+                    >
+                      입장
+                    </EnterButton>
+                  </ContentsWrapper>
+                </RoomWrapper>
+              );
+            })}
         </RoomContainer>
       </Container>
     </>
@@ -132,7 +158,7 @@ const Container = styled.div`
   height: 100vh;
 `;
 
-const Header = styled.div`
+const HeaderWrapper = styled.div`
   display: felx;
   border-bottom: 1px solid lightgray;
   line-height: 1.5;
