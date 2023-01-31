@@ -3,12 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   myReadyState: false,
   player2Ready: false,
-  player3Ready: false,
-  player4Ready: false,
   faceEmotionHappyScore: 0,
   myScore: 0,
   player2Score: 0,
   player2Video: null,
+  isDead: false,
 };
 
 export const gameSlice = createSlice({
@@ -33,8 +32,10 @@ export const gameSlice = createSlice({
       state.player2Score = action.payload;
     },
     getPlayer2Video: (state, action) => {
-      console.log("2플레이어 비디오??", action.payload);
       // state.player2Video = action.payload;
+    },
+    gameFinished(state) {
+      state.isDead = true;
     },
   },
 });
@@ -46,5 +47,6 @@ export const {
   getMyScore,
   getPlayer2Score,
   getPlayer2Video,
+  gameFinished,
 } = gameSlice.actions;
 export default gameSlice.reducer;

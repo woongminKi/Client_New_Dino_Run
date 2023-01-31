@@ -1,5 +1,5 @@
 import axios from "axios";
-import { all, fork, put, takeLatest, takeEvery } from "redux-saga/effects";
+import { all, fork, put, takeLatest } from "redux-saga/effects";
 import { loginRequest, loginFailure } from "./authSlice";
 
 function* userLogin({ payload }) {

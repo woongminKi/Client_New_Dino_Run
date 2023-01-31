@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import Header from "./Header";
+import RoomModal from "./modal/RoomModal";
 import { userInfoRequest } from "./features/user/userSlice";
 import {
   roomRegister,
@@ -14,10 +16,9 @@ import {
   readyRequest,
   otherPlayerReadyRequest,
 } from "./features/game/gameSlice";
-import RoomModal from "./modal/RoomModal";
 import { MAIN_COLOR_1 } from "../utils/color";
 import { socketAction } from "../modules/useSocket";
-import Header from "./Header";
+import { getCookie } from "../utils/cookies";
 
 export default function Main() {
   const [userId, setUserId] = useState("");
@@ -77,11 +78,16 @@ export default function Main() {
     navigate(`/readyRoom/${userId}`);
   };
 
+  if (!getCookie("accessToken")) {
+    navigate("/");
+  }
+
   useEffect(() => {
     getProfile();
     dispatch(fetchRoomDB(userId));
     dispatch(readyRequest(false));
     dispatch(otherPlayerReadyRequest(false));
+    // dispatch(clearRoom());
   }, []);
 
   useEffect(() => {
@@ -122,7 +128,6 @@ export default function Main() {
             .slice(0)
             .reverse()
             .map((roomArr) => {
-              // console.log("리스트:", roomArr);
               return (
                 <RoomWrapper key={roomArr._id}>
                   <RoomUserImage
@@ -156,46 +161,6 @@ const Container = styled.div`
   left: 0;
   width: 100%;
   height: 100vh;
-`;
-
-const HeaderWrapper = styled.div`
-  display: felx;
-  border-bottom: 1px solid lightgray;
-  line-height: 1.5;
-  justify-content: space-between;
-  align-items: center;
-
-  .make-room:hover {
-    padding: 15px 50px 15px 50px;
-    transition: all 0.2s linear 0s;
-    color: ${MAIN_COLOR_1};
-  }
-`;
-
-const ProfileWapper = styled.div`
-  display: flex;
-  margin: 10px 0 10px 50px;
-  align-items: center;
-`;
-
-const ProfileImage = styled.img`
-  width: 70px;
-  height: 70px;
-`;
-
-const UserName = styled.div`
-  margin-left: 15px;
-`;
-
-const RoomMakeButton = styled.button`
-  margin-right: 50px;
-  padding: 10px 30px 10px 30px;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 18px;
-  font-weight: 50;
 `;
 
 const RoomContainer = styled.div`
