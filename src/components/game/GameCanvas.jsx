@@ -3,13 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import * as faceApi from "face-api.js";
+import { getCookie } from "../../utils/cookies";
 
 import { socketAction } from "../../modules/useSocket";
 import {
   getFaceEmotion,
   getMyScore,
-  getPlayer2Video,
+  gameFinished,
 } from "../features/game/gameSlice";
+import { clearRoom } from "../features/room/roomSlice";
+
 import Cactus from "./character/Cactus";
 import Ground from "./background/Ground";
 import Dino from "./character/Dino";
@@ -29,14 +32,9 @@ export default function GameCanvas() {
   const videoRef = useRef(null);
   const detectRef = useRef(null);
   const gameResource = useRef(null);
-  const player2VideoRef = useRef(null);
-  const player2DetectRef = useRef(null);
-  const player2CanvasRef = useRef(null);
 
-  const [canvasTag, setCanvasTag] = useState([]);
   const [score, setScore] = useState(0);
   const [isCollision, setIsCollision] = useState(false);
-  let timerId = 0;
 
   const videoHeight = 50;
   const videoWidth = 50;
@@ -50,13 +48,9 @@ export default function GameCanvas() {
   const backGroundImage = new Image();
   backGroundImage.src = groundImage;
 
-  // useEffect(() => {
-  //   const canvas = canvasRef.current;
-  //   canvas.width = window.innerWidth;
-  //   canvas.height = window.innerHeight * 0.5;
-
-  //   setCanvasTag(canvas);
-  // }, []);
+  if (!getCookie("accessToken")) {
+    navigate("/");
+  }
 
   const startVideo = async () => {
     try {
@@ -66,7 +60,6 @@ export default function GameCanvas() {
         width: videoWidth,
         height: videoHeight,
       });
-
       const video = videoRef.current;
 
       video.srcObject = stream;
@@ -97,6 +90,11 @@ export default function GameCanvas() {
     faceApi.draw.drawFaceExpressions(detectRef.current, resizedDetection);
 
     dispatch(getFaceEmotion(detections));
+  };
+
+  const handleGoToMain = () => {
+    dispatch(clearRoom());
+    navigate("/main");
   };
 
   useEffect(() => {
@@ -183,22 +181,17 @@ export default function GameCanvas() {
     openCamera();
   }, [canvasRef]);
 
-  // const debouncing = (func, timeout = 300) => {
-  //   clearTimeout(timerId);
-  //   timerId = setTimeout(func, timeout);
-  // };
-
   useEffect(() => {
-    if (faceEmotionHappyScore >= 0.9999999) {
+    if (faceEmotionHappyScore >= 0.999999) {
       // 딱 처음 또는 마지막 스코어만 캐치하는게 관건
-      // console.log("해삐 스코어: ", faceEmotionHappyScore);
-      // const jumpEvent = () => {
       const event = new Event("jump");
       document.dispatchEvent(event);
-      // };
-      // debouncing(jumpEvent);
     }
   }, [faceEmotionHappyScore]);
+
+  useEffect(() => {
+    dispatch(gameFinished());
+  }, [isCollision]);
 
   useEffect(() => {
     const loadModels = async () => {
@@ -212,14 +205,11 @@ export default function GameCanvas() {
       }
     };
     loadModels();
-
-    // socketAction.getPlayer2Video(videoRef.current);
   }, [videoRef]);
-  // console.log("videoRef::::", videoRef);
+
   useEffect(() => {
     dispatch(getMyScore(score));
     socketAction.gameScore(score);
-    // socketAction.getPlayer2Video(videoRef.current);
   }, [score]);
 
   return (
@@ -233,6 +223,11 @@ export default function GameCanvas() {
         </DetectWrapper>
       </FaceDetectorWrapper>
       <Div>
+        {isCollision && (
+          <button className="action-button" onClick={handleGoToMain}>
+            나가기
+          </button>
+        )}
         <canvas className="canvas" ref={canvasRef} />
       </Div>
     </>

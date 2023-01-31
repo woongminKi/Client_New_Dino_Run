@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   title: "",
   userCount: 0,
-  entireUser: 4,
   nickName: "",
   users: [],
   userId: 0,
@@ -40,16 +39,14 @@ export const roomSlice = createSlice({
       state.isMadeRoomSuccess = true;
     },
     joinRoom: (state, action) => {
-      console.log("소켓에 쓰이는 데이터녀석:::", action.payload);
       state.userData = action.payload;
-      // state.currentRoomData = action.payload;
     },
     clearRoom: (state) => {
       state.users = [];
       state.roomList = [];
       state.userCount = 0;
-      state.roomDbArray = [];
-      state.fetchDBArray = [];
+      state.userData = {};
+      state.myInfoData = {};
     },
     responseRoomDB: (state, action) => {
       state.roomDbArray = action.payload;
@@ -58,7 +55,6 @@ export const roomSlice = createSlice({
       state.fetchDBArray = action.payload;
     },
     saveMyInfoData: (state, action) => {
-      console.log("saveMyInfoData payload:", action.payload);
       state.myInfoData = action.payload;
     },
   },

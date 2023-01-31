@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Header from "../Header";
 import { readyRequest } from "../features/game/gameSlice";
 import { socketAction } from "../../modules/useSocket";
+import { getCookie } from "../../utils/cookies";
 
 export default function ReadyRoom() {
   const [isReady, setIsReady] = useState(false);
@@ -12,7 +13,7 @@ export default function ReadyRoom() {
   const navigate = useNavigate();
   const roomStatus = useSelector((state) => state.room);
   const { myReadyState, player2Ready } = useSelector((state) => state.game);
-  const { authorInfo, myInfo } = roomStatus.userData; //상대방 입장시 데이터가 내개 보여짐
+  const { authorInfo, myInfo } = roomStatus.userData;
   const { title } = roomStatus;
 
   const getReadyForGame = () => {
@@ -21,6 +22,10 @@ export default function ReadyRoom() {
 
     socketAction.otherPlayerReadyRequest(isReady);
   };
+
+  if (!getCookie("accessToken")) {
+    navigate("/");
+  }
 
   useEffect(() => {
     if (myReadyState && player2Ready) {

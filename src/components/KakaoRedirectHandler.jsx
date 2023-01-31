@@ -15,7 +15,7 @@ export default function KakaoRedirectHandler() {
 
   const restAPIKey = "fc68dfe18e2e8c79b2dfba1be0fc0eb7";
   const redirectURI = "http://localhost:3000/oauth/kakao/callback";
-  const clientSecret = "9xSEQLoGyRPlmuxU8dlYWehFqR1vtfn3";
+  const clientSecret = process.env.REACT_APP_CLIENT_SECRET_ID;
   const grantType = "authorization_code";
 
   const code = new URL(window.location.href).searchParams.get("code");
@@ -41,7 +41,6 @@ export default function KakaoRedirectHandler() {
         path: "/",
         sameSite: "none",
         secure: true,
-        // httpOnly: true,
         maxAge: 604800,
       });
 
@@ -49,7 +48,6 @@ export default function KakaoRedirectHandler() {
         path: "/",
         sameSite: "none",
         secure: true,
-        // httpOnly: true,
         maxAge: 604800,
       });
 
