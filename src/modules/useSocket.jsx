@@ -11,6 +11,7 @@ import {
 export const socket = io.connect("http://localhost:8000", {
   path: "/socket.io",
   transports: ["websocket"],
+  withCredentials: true,
   cors: {
     origin: "http://localhost:8000",
   },
