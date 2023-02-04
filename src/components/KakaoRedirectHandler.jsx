@@ -26,7 +26,7 @@ export default function KakaoRedirectHandler() {
       client_id: restAPIKey,
       redirect_uri: redirectURI,
       code,
-      client_secret: clientSecret,
+      // client_secret: clientSecret,
     });
 
     try {
