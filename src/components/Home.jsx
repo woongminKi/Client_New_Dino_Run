@@ -4,7 +4,8 @@ import kakaoImage from "../images/kakao_login_medium_narrow.png";
 
 export default function Home() {
   const clientId = "fc68dfe18e2e8c79b2dfba1be0fc0eb7";
-  const redirectURI = "http://localhost:3000/oauth/kakao/callback";
+  const redirectURI = `${process.env.REACT_APP_CLIENT_URL}/oauth/kakao/callback`;
+  // const redirectURI = "http://localhost:3000/oauth/kakao/callback";
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectURI}&response_type=code`;
 
   return (

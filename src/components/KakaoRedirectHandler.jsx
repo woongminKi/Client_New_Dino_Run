@@ -14,7 +14,8 @@ export default function KakaoRedirectHandler() {
   const loginStatus = useSelector((state) => state.auth.loginStatus);
 
   const restAPIKey = "fc68dfe18e2e8c79b2dfba1be0fc0eb7";
-  const redirectURI = "http://localhost:3000/oauth/kakao/callback";
+  const redirectURI = `${process.env.REACT_APP_CLIENT_URL}/oauth/kakao/callback`;
+  // const redirectURI = "http://localhost:3000/oauth/kakao/callback";
   const clientSecret = process.env.REACT_APP_CLIENT_SECRET_ID;
   const grantType = "authorization_code";
 
