@@ -11,7 +11,7 @@ function* userLogin({ payload }) {
   const refreshTokenExpiresIn = data.refresh_token_expires_in;
 
   try {
-    yield axios.post("http://localhost:8000/user/login", {
+    yield axios.post(`${process.env.REACT_APP_SERVER_URL}/user/login`, {
       headers: {
         accessToken,
         refreshToken,

@@ -6,7 +6,7 @@ function* userInfo({ payload }) {
   const { userId, nickName, profileImage } = payload;
 
   try {
-    yield axios.post("http://localhost:8000/user/register", {
+    yield axios.post(`${process.env.REACT_APP_SERVER_URL}/user/register`, {
       userId,
       nickName,
       profileImage,

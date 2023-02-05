@@ -7,7 +7,7 @@ function* roomInfo({ payload }) {
   const { title, userId, nickName, profileImage } = payload;
 
   try {
-    yield axios.post(`http://localhost:8000/rooms/${userId}`, {
+    yield axios.post(`${process.env.REACT_APP_SERVER_URL}/rooms/${userId}`, {
       title,
       userId,
       nickName,
@@ -19,7 +19,7 @@ function* roomInfo({ payload }) {
     });
 
     const getRoomArray = yield axios.get(
-      `http://localhost:8000/rooms/${userId}`,
+      `${process.env.REACT_APP_SERVER_URL}/rooms/${userId}`,
       {
         headers: {
           accessAuthorization: `${getCookie("accessToken")}`,
@@ -38,7 +38,7 @@ function* fetchDBList({ payload }) {
   const { userId } = payload;
 
   const getRoomArray = yield axios.get(
-    `http://localhost:8000/rooms/${userId}`,
+    `${process.env.REACT_APP_SERVER_URL}/rooms/${userId}`,
     {
       headers: {
         accessAuthorization: `${getCookie("accessToken")}`,

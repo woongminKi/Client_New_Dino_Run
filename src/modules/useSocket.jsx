@@ -8,12 +8,12 @@ import {
   getPlayer2Video,
 } from "../components/features/game/gameSlice";
 
-export const socket = io.connect("http://localhost:8000", {
+export const socket = io.connect(`${process.env.REACT_APP_SERVER_URL}`, {
   path: "/socket.io",
   transports: ["websocket"],
   withCredentials: true,
   cors: {
-    origin: "http://localhost:8000",
+    origin: `${process.env.REACT_APP_SERVER_URL}`,
   },
 });
 
