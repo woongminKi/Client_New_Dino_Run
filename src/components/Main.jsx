@@ -31,7 +31,8 @@ export default function Main() {
   const navigate = useNavigate();
 
   const roomStatus = useSelector((state) => state.room);
-  const { roomDbArray } = roomStatus;
+  const { roomDbArray = [] } = roomStatus;
+  console.log("roomDbArray::", roomDbArray);
   const myInfo = { userId, nickName, profileImage };
 
   const getProfile = async () => {
@@ -125,28 +126,26 @@ export default function Main() {
         )}
 
         <RoomContainer>
-          {roomDbArray
-            // .slice(0)
-            // .reverse()
-            .map((roomArr) => {
-              return (
-                <RoomWrapper key={roomArr._id}>
-                  <RoomUserImage
-                    src={roomArr.author.profileImage}
-                    alt="유저 프로필 이미지"
-                  />
-                  <ContentsWrapper>
-                    <RoomTitle>제목: {roomArr.roomInfo.title}</RoomTitle>
-                    <EnterButton
-                      className="enter-button"
-                      onClick={() => handleGoToRoom(roomArr)}
-                    >
-                      입장
-                    </EnterButton>
-                  </ContentsWrapper>
-                </RoomWrapper>
-              );
-            })}
+          {roomDbArray.map((roomArr) => {
+            console.log("roomArr", roomArr);
+            return (
+              <RoomWrapper key={roomArr._id}>
+                <RoomUserImage
+                  src={roomArr.author.profileImage}
+                  alt="유저 프로필 이미지"
+                />
+                <ContentsWrapper>
+                  <RoomTitle>제목: {roomArr.roomInfo.title}</RoomTitle>
+                  <EnterButton
+                    className="enter-button"
+                    onClick={() => handleGoToRoom(roomArr)}
+                  >
+                    입장
+                  </EnterButton>
+                </ContentsWrapper>
+              </RoomWrapper>
+            );
+          })}
         </RoomContainer>
       </Container>
     </>
