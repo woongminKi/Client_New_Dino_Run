@@ -49,7 +49,6 @@ export const roomSlice = createSlice({
       state.myInfoData = {};
     },
     responseRoomDB: (state, action) => {
-      console.log("디비 룸 리스트:", action.payload);
       state.roomDbArray = action.payload;
     },
     fetchRoomDB: (state, action) => {

@@ -67,9 +67,8 @@ export default function Main() {
   const handleGoToRoom = (data) => {
     console.log("방 입장시 데이터:", data);
     const roomId = data._id;
-    const title = data.roomInfo.title;
-    const userId = data.author.id;
-    const { nickName, profileImage } = data.author;
+    const title = data.title;
+    const { userId, nickName, profileImage } = data;
 
     socketAction.joinRoom({
       title,
