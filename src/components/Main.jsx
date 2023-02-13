@@ -31,10 +31,8 @@ export default function Main() {
   const navigate = useNavigate();
 
   const roomStatus = useSelector((state) => state.room);
-  const { roomDbArray } = roomStatus;
-
-  console.log("roomStatus::", roomStatus);
-  console.log("roomDbArray::", roomDbArray);
+  // const { roomDbArray } = roomStatus;
+  const { roomList } = roomStatus;
 
   const myInfo = { userId, nickName, profileImage };
 
@@ -128,28 +126,31 @@ export default function Main() {
           </RoomModal>
         )}
 
-        {/* <RoomContainer>
-          {roomDbArray.map((roomArr) => {
-            console.log("roomArr", roomArr);
-            return (
-              <RoomWrapper key={roomArr._id}>
-                <RoomUserImage
-                  src={roomArr.author.profileImage}
-                  alt="유저 프로필 이미지"
-                />
-                <ContentsWrapper>
-                  <RoomTitle>제목: {roomArr.roomInfo.title}</RoomTitle>
-                  <EnterButton
-                    className="enter-button"
-                    onClick={() => handleGoToRoom(roomArr)}
-                  >
-                    입장
-                  </EnterButton>
-                </ContentsWrapper>
-              </RoomWrapper>
-            );
-          })}
-        </RoomContainer> */}
+        <RoomContainer>
+          {roomList
+            .slice(0)
+            .reverse()
+            .map((roomArr) => {
+              console.log("roomArr", roomArr);
+              return (
+                <RoomWrapper key={roomArr._id}>
+                  <RoomUserImage
+                    src={roomArr.author.profileImage}
+                    alt="유저 프로필 이미지"
+                  />
+                  <ContentsWrapper>
+                    <RoomTitle>제목: {roomArr.roomInfo.title}</RoomTitle>
+                    <EnterButton
+                      className="enter-button"
+                      onClick={() => handleGoToRoom(roomArr)}
+                    >
+                      입장
+                    </EnterButton>
+                  </ContentsWrapper>
+                </RoomWrapper>
+              );
+            })}
+        </RoomContainer>
       </Container>
     </>
   );
