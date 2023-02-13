@@ -27,7 +27,7 @@ function* roomInfo({ payload }) {
         },
       }
     );
-
+    console.log("서버 디비에서 넘어오는 룸 리스트:", getRoomArray);
     yield put(responseRoomDB(getRoomArray.data));
   } catch (err) {
     console.log("Room saga Error exist: ", err);
