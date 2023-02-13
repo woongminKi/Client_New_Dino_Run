@@ -126,7 +126,7 @@ export default function Main() {
 
         <RoomContainer>
           {roomDbArray
-            .slice(0)
+            // .slice(0)
             // .reverse()
             .map((roomArr) => {
               return (
