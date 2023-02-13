@@ -29,6 +29,7 @@ export default function Main() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const roomStatus = useSelector((state) => state.room);
   const { roomDbArray } = roomStatus;
   const myInfo = { userId, nickName, profileImage };

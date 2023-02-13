@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import kakaoImage from "../images/kakao_login_medium_narrow.png";
 
@@ -8,14 +10,16 @@ export default function Home() {
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectURI}&response_type=code`;
 
   return (
-    <Container>
-      <div className="dino-title">Dino Run</div>
-      <a href={KAKAO_AUTH_URL}>
-        <KakaoBtn>
-          <img src={kakaoImage} alt="login" />
-        </KakaoBtn>
-      </a>
-    </Container>
+    <>
+      <Container>
+        <div className="dino-title">Dino Run</div>
+        <a href={KAKAO_AUTH_URL}>
+          <KakaoBtn>
+            <img src={kakaoImage} alt="login" />
+          </KakaoBtn>
+        </a>
+      </Container>
+    </>
   );
 }
 
