@@ -65,6 +65,7 @@ export default function Main() {
   };
 
   const handleGoToRoom = (data) => {
+    console.log("방 입장시 데이터:", data);
     const roomId = data._id;
     const title = data.roomInfo.title;
     const userId = data.author.id;
@@ -131,11 +132,9 @@ export default function Main() {
             .slice(0)
             .reverse()
             .map((roomArr) => {
-              console.log("roomArr", roomArr);
               return (
                 <RoomWrapper key={roomArr._id}>
                   <RoomUserImage
-                    // src={roomArr.author.profileImage}
                     src={roomArr.profileImage}
                     alt="유저 프로필 이미지"
                   />

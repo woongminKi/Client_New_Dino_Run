@@ -4,7 +4,7 @@ import { userInfoRequest, userInfoFailure } from "./userSlice";
 
 function* userInfo({ payload }) {
   const { userId, nickName, profileImage } = payload;
-  console.log("유저 인포:", userId, nickName, profileImage);
+  // console.log("유저 인포:", userId, nickName, profileImage);
 
   try {
     yield axios.post(`${process.env.REACT_APP_SERVER_URL}/user/register`, {
