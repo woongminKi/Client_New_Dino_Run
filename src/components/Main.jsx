@@ -31,7 +31,7 @@ export default function Main() {
   const navigate = useNavigate();
 
   const roomStatus = useSelector((state) => state.room);
-  const { roomDbArray = [] } = roomStatus;
+  const { roomDbArray } = roomStatus;
   console.log("roomDbArray::", roomDbArray);
   const myInfo = { userId, nickName, profileImage };
 
