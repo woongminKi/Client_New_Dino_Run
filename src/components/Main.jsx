@@ -32,7 +32,10 @@ export default function Main() {
 
   const roomStatus = useSelector((state) => state.room);
   const { roomDbArray } = roomStatus;
+
+  console.log("roomStatus::", roomStatus);
   console.log("roomDbArray::", roomDbArray);
+
   const myInfo = { userId, nickName, profileImage };
 
   const getProfile = async () => {
