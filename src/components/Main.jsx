@@ -125,7 +125,7 @@ export default function Main() {
           </RoomModal>
         )}
 
-        <RoomContainer>
+        {/* <RoomContainer>
           {roomDbArray.map((roomArr) => {
             console.log("roomArr", roomArr);
             return (
@@ -146,7 +146,7 @@ export default function Main() {
               </RoomWrapper>
             );
           })}
-        </RoomContainer>
+        </RoomContainer> */}
       </Container>
     </>
   );
