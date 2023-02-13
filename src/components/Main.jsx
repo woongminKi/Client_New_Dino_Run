@@ -127,7 +127,7 @@ export default function Main() {
         <RoomContainer>
           {roomDbArray
             .slice(0)
-            .reverse()
+            // .reverse()
             .map((roomArr) => {
               return (
                 <RoomWrapper key={roomArr._id}>
