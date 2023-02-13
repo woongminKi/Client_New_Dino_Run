@@ -135,7 +135,8 @@ export default function Main() {
               return (
                 <RoomWrapper key={roomArr._id}>
                   <RoomUserImage
-                    src={roomArr.author.profileImage}
+                    // src={roomArr.author.profileImage}
+                    src={roomArr.profileImage}
                     alt="유저 프로필 이미지"
                   />
                   <ContentsWrapper>
