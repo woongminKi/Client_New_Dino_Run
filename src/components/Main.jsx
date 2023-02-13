@@ -140,7 +140,7 @@ export default function Main() {
                     alt="유저 프로필 이미지"
                   />
                   <ContentsWrapper>
-                    <RoomTitle>제목: {roomArr.roomInfo.title}</RoomTitle>
+                    <RoomTitle>제목: {roomArr.title}</RoomTitle>
                     <EnterButton
                       className="enter-button"
                       onClick={() => handleGoToRoom(roomArr)}
