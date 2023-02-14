@@ -44,7 +44,6 @@ function createSocketChannel(socket) {
       emit(getPlayer2Score(score));
     });
     socket.on("otherPlayerVideo", (video) => {
-      console.log("서버에서 넘어온 상대 비디오???", video);
       emit(getPlayer2Video(video));
     });
 

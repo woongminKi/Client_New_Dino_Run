@@ -9,7 +9,7 @@ import { userInfoRequest } from "./features/user/userSlice";
 import {
   roomRegister,
   totalRoomUsers,
-  // fetchRoomDB,
+  fetchRoomDB,
   saveMyInfoData,
 } from "./features/room/roomSlice";
 import {
@@ -32,6 +32,7 @@ export default function Main() {
 
   const roomStatus = useSelector((state) => state.room);
   const { roomList } = roomStatus;
+  console.log("룸 리스트");
 
   const myInfo = { userId, nickName, profileImage };
 
@@ -85,7 +86,7 @@ export default function Main() {
 
   useEffect(() => {
     getProfile();
-    // dispatch(fetchRoomDB(userId));
+    dispatch(fetchRoomDB(userId));
     dispatch(readyRequest(false));
     dispatch(otherPlayerReadyRequest(false));
     // dispatch(clearRoom());
@@ -93,10 +94,11 @@ export default function Main() {
 
   useEffect(() => {
     if (userId && nickName && profileImage) {
-      dispatch(userInfoRequest({ userId, nickName, profileImage }));
+      // dispatch(userInfoRequest({ userId, nickName, profileImage }));
+      dispatch(userInfoRequest(myInfo));
       dispatch(saveMyInfoData(myInfo));
     }
-  }, [dispatch, nickName, profileImage, userId]);
+  }, [dispatch, myInfo, nickName, profileImage, userId]);
 
   return (
     <>
