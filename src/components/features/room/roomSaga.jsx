@@ -5,7 +5,6 @@ import { getCookie } from "../../../utils/cookies";
 
 function* roomInfo({ payload }) {
   const { title, userId, nickName, profileImage } = payload;
-  console.log("룸 인포:", title, userId, nickName, profileImage);
 
   try {
     yield axios.post(`${process.env.REACT_APP_SERVER_URL}/rooms/${userId}`, {
@@ -28,7 +27,7 @@ function* roomInfo({ payload }) {
         },
       }
     );
-    console.log("서버 디비에서 넘어오는 룸 리스트:", getRoomArray);
+
     yield put(responseRoomDB(getRoomArray.data));
   } catch (err) {
     console.log("Room saga Error exist: ", err);

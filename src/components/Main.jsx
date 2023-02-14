@@ -17,7 +17,7 @@ import {
   otherPlayerReadyRequest,
 } from "./features/game/gameSlice";
 import { MAIN_COLOR_1 } from "../utils/color";
-import { socketAction } from "../modules/useSocket";
+import { socket, socketAction } from "../modules/useSocket";
 import { getCookie } from "../utils/cookies";
 
 export default function Main() {
@@ -31,7 +31,6 @@ export default function Main() {
   const navigate = useNavigate();
 
   const roomStatus = useSelector((state) => state.room);
-  // const { roomDbArray } = roomStatus;
   const { roomList } = roomStatus;
 
   const myInfo = { userId, nickName, profileImage };
@@ -41,7 +40,7 @@ export default function Main() {
       const data = await window.Kakao.API.request({
         url: "/v2/user/me",
       });
-      console.log("카카오 getProfile:::", data);
+
       setUserId(data.id);
       setNickName(data.properties.nickname);
       setProfileImage(data.properties.profile_image);
@@ -65,7 +64,6 @@ export default function Main() {
   };
 
   const handleGoToRoom = (data) => {
-    console.log("방 입장시 데이터:", data);
     const roomId = data._id;
     const title = data.title;
     const { userId, nickName, profileImage } = data;
@@ -99,6 +97,10 @@ export default function Main() {
       dispatch(saveMyInfoData(myInfo));
     }
   }, [dispatch, nickName, profileImage, userId]);
+
+  useEffect(() => {
+    return socket.close();
+  }, []);
 
   return (
     <>

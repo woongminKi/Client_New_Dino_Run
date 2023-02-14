@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import React from "react";
 import styled from "styled-components";
 import kakaoImage from "../images/kakao_login_medium_narrow.png";
 
