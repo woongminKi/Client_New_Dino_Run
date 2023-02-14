@@ -9,7 +9,7 @@ import { userInfoRequest } from "./features/user/userSlice";
 import {
   roomRegister,
   totalRoomUsers,
-  fetchRoomDB,
+  // fetchRoomDB,
   saveMyInfoData,
 } from "./features/room/roomSlice";
 import {
