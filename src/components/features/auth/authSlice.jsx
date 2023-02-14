@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   loginStatus: false,
-  playerName: "",
   error: null,
 };
 

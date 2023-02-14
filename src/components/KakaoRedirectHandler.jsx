@@ -14,8 +14,6 @@ export default function KakaoRedirectHandler() {
   const loginStatus = useSelector((state) => state.auth.loginStatus);
 
   const restAPIKey = `${process.env.REACT_APP_CLIENT_API_ID}`;
-  // const redirectURI =
-  //   "http://newdinorun.s3-website.ap-northeast-2.amazonaws.com/oauth/token";
   const redirectURI = `${process.env.REACT_APP_CLIENT_URL}/oauth/kakao/callback`;
   // const clientSecret = process.env.REACT_APP_CLIENT_SECRET_ID;
   const grantType = "authorization_code";
