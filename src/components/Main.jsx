@@ -32,7 +32,7 @@ export default function Main() {
 
   const roomStatus = useSelector((state) => state.room);
   // const { roomList } = roomStatus;
-  const roomUserId = roomStatus.userId;
+  const roomUserId = roomStatus.myInfoData.userId;
   console.log("roomStatus:", roomStatus);
 
   const myInfo = { userId, nickName, profileImage };

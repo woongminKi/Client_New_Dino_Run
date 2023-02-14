@@ -1,5 +1,5 @@
 import axios from "axios";
-import { all, fork, put, takeLatest } from "redux-saga/effects";
+import { all, fork, put, takeLatest, takeEvery } from "redux-saga/effects";
 import { roomRegister, responseRoomDB, fetchRoomDB } from "./roomSlice";
 import { getCookie } from "../../../utils/cookies";
 
@@ -56,7 +56,7 @@ function* watchRoomInfo() {
 }
 
 function* watchFetchRoomDB() {
-  yield takeLatest(fetchRoomDB, fetchDBList);
+  yield takeEvery(fetchRoomDB, fetchDBList);
 }
 
 export default function* roomSaga() {
