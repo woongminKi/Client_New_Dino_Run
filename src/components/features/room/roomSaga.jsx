@@ -28,7 +28,7 @@ function* roomInfo({ payload }) {
         },
       }
     );
-    console.log("getRoomArray::", getRoomArray);
+    console.log("방 만들때 실행되고선 백에서 가져온 룸 리스트::", getRoomArray);
     yield put(responseRoomDB(getRoomArray.data));
   } catch (err) {
     console.log("Room saga Error exist: ", err);
@@ -36,8 +36,7 @@ function* roomInfo({ payload }) {
 }
 
 function* fetchDBList({ payload }) {
-  console.log("fetchDBList payload:", payload);
-  const { userId } = payload;
+  const userId = payload;
 
   const getRoomArray = yield axios.get(
     `${process.env.REACT_APP_SERVER_URL}/rooms/${userId}`,
@@ -48,7 +47,7 @@ function* fetchDBList({ payload }) {
       },
     }
   );
-
+  console.log("로비에 보여질 룸 리스트::", getRoomArray);
   yield put(responseRoomDB(getRoomArray.data));
 }
 
