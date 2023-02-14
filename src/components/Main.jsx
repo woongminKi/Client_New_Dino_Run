@@ -31,8 +31,8 @@ export default function Main() {
   const navigate = useNavigate();
 
   const roomStatus = useSelector((state) => state.room);
-  const { roomList } = roomStatus;
-  console.log("룸 리스트");
+  // const { roomList } = roomStatus;
+  console.log("roomStatus:", roomStatus);
 
   const myInfo = { userId, nickName, profileImage };
 
@@ -94,11 +94,11 @@ export default function Main() {
 
   useEffect(() => {
     if (userId && nickName && profileImage) {
-      // dispatch(userInfoRequest({ userId, nickName, profileImage }));
-      dispatch(userInfoRequest(myInfo));
+      dispatch(userInfoRequest({ userId, nickName, profileImage }));
+      // dispatch(userInfoRequest(myInfo));
       dispatch(saveMyInfoData(myInfo));
     }
-  }, [dispatch, myInfo, nickName, profileImage, userId]);
+  }, [dispatch, nickName, profileImage, userId]);
 
   return (
     <>
@@ -126,7 +126,7 @@ export default function Main() {
           </RoomModal>
         )}
 
-        <RoomContainer>
+        {/* <RoomContainer>
           {roomList
             .slice(0)
             .reverse()
@@ -149,7 +149,7 @@ export default function Main() {
                 </RoomWrapper>
               );
             })}
-        </RoomContainer>
+        </RoomContainer> */}
       </Container>
     </>
   );
