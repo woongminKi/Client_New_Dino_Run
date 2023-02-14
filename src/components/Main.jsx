@@ -32,6 +32,7 @@ export default function Main() {
 
   const roomStatus = useSelector((state) => state.room);
   // const { roomList } = roomStatus;
+  const roomUserId = roomStatus.userId;
   console.log("roomStatus:", roomStatus);
 
   const myInfo = { userId, nickName, profileImage };
@@ -86,7 +87,7 @@ export default function Main() {
 
   useEffect(() => {
     getProfile();
-    dispatch(fetchRoomDB(userId));
+    dispatch(fetchRoomDB(roomUserId));
     dispatch(readyRequest(false));
     dispatch(otherPlayerReadyRequest(false));
     // dispatch(clearRoom());
@@ -95,7 +96,6 @@ export default function Main() {
   useEffect(() => {
     if (userId && nickName && profileImage) {
       dispatch(userInfoRequest({ userId, nickName, profileImage }));
-      // dispatch(userInfoRequest(myInfo));
       dispatch(saveMyInfoData(myInfo));
     }
   }, [dispatch, nickName, profileImage, userId]);
