@@ -98,9 +98,9 @@ export default function Main() {
     }
   }, [dispatch, nickName, profileImage, userId]);
 
-  useEffect(() => {
-    return socket.close();
-  }, []);
+  // useEffect(() => {
+  //   return socket.close();
+  // }, []);
 
   return (
     <>
