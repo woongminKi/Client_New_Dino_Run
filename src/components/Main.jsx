@@ -85,7 +85,7 @@ export default function Main() {
 
   useEffect(() => {
     getProfile();
-    dispatch(fetchRoomDB(userId));
+    // dispatch(fetchRoomDB(userId));
     dispatch(readyRequest(false));
     dispatch(otherPlayerReadyRequest(false));
     // dispatch(clearRoom());
@@ -97,10 +97,6 @@ export default function Main() {
       dispatch(saveMyInfoData(myInfo));
     }
   }, [dispatch, nickName, profileImage, userId]);
-
-  // useEffect(() => {
-  //   return socket.close();
-  // }, []);
 
   return (
     <>

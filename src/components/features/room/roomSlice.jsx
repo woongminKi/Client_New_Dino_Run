@@ -51,9 +51,9 @@ export const roomSlice = createSlice({
     responseRoomDB: (state, action) => {
       state.roomDbArray = action.payload;
     },
-    fetchRoomDB: (state, action) => {
-      state.fetchDBArray = action.payload;
-    },
+    // fetchRoomDB: (state, action) => {
+    //   state.fetchDBArray = action.payload;
+    // },
     saveMyInfoData: (state, action) => {
       state.myInfoData = action.payload;
     },
@@ -67,7 +67,7 @@ export const {
   joinRoom,
   clearRoom,
   responseRoomDB,
-  fetchRoomDB,
+  // fetchRoomDB,
   saveMyInfoData,
 } = roomSlice.actions;
 export default roomSlice.reducer;
