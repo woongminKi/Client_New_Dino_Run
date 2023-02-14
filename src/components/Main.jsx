@@ -42,7 +42,7 @@ export default function Main() {
       const data = await window.Kakao.API.request({
         url: "/v2/user/me",
       });
-
+      console.log("카카오 프로필 data:", data);
       setUserId(data.id);
       setNickName(data.properties.nickname);
       setProfileImage(data.properties.profile_image);
