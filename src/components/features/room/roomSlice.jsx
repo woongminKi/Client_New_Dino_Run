@@ -67,7 +67,7 @@ export const {
   joinRoom,
   clearRoom,
   responseRoomDB,
-  // fetchRoomDB,
+  fetchRoomDB,
   saveMyInfoData,
 } = roomSlice.actions;
 export default roomSlice.reducer;
