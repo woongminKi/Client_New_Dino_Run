@@ -8,16 +8,14 @@ export default function Home() {
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectURI}&response_type=code`;
 
   return (
-    <>
-      <Container>
-        <div className="dino-title">Dino Run</div>
-        <a href={KAKAO_AUTH_URL}>
-          <KakaoBtn>
-            <img src={kakaoImage} alt="login" />
-          </KakaoBtn>
-        </a>
-      </Container>
-    </>
+    <Container>
+      <div className="dino-title">Dino Run</div>
+      <a href={KAKAO_AUTH_URL}>
+        <KakaoBtn>
+          <img src={kakaoImage} alt="login" />
+        </KakaoBtn>
+      </a>
+    </Container>
   );
 }
 
