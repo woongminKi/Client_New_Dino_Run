@@ -39,7 +39,10 @@ function* fetchDBList({ payload }) {
   const userId = payload;
 
   const test = yield axios.get(`${process.env.REACT_APP_SERVER_URL}/ping`);
-  console.log("ping test:", test.data.result);
+  console.log("ping get test:", test.data.result);
+
+  const testPost = yield axios.post(`${process.env.REACT_APP_SERVER_URL}/ping`);
+  console.log("ping post test:", testPost.data.result);
 
   const getRoomArray = yield axios.get(
     `${process.env.REACT_APP_SERVER_URL}/rooms/${userId}`,
