@@ -9,7 +9,7 @@ import {
 } from "../components/features/game/gameSlice";
 
 export const socket = io.connect(process.env.REACT_APP_SERVER_URL, {
-  // transports: ["websocket"],
+  transports: ["websocket"],
   // withCredentials: true,
   cors: {
     origin: process.env.REACT_APP_SERVER_URL,
