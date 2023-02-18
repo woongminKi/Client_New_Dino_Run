@@ -30,7 +30,7 @@ export default function Main() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const roomStatus = useSelector((state) => state.room);
-  // const { roomList } = roomStatus;
+  const { roomList, roomDbArray } = roomStatus;
   const roomUserId = roomStatus.myInfoData.userId;
   console.log("roomStatus:", roomStatus);
 
@@ -41,7 +41,7 @@ export default function Main() {
       const data = await window.Kakao.API.request({
         url: "/v2/user/me",
       });
-      console.log("카카오 프로필 data:", data);
+
       setUserId(data.id);
       setNickName(data.properties.nickname);
       setProfileImage(data.properties.profile_image);
@@ -125,19 +125,19 @@ export default function Main() {
           </RoomModal>
         )}
 
-        {/* <RoomContainer>
-          {roomList
+        <RoomContainer>
+          {roomDbArray
             .slice(0)
             .reverse()
             .map((roomArr) => {
               return (
                 <RoomWrapper key={roomArr._id}>
                   <RoomUserImage
-                    src={roomArr.profileImage}
+                    src={roomArr.author.profileImage}
                     alt="유저 프로필 이미지"
                   />
                   <ContentsWrapper>
-                    <RoomTitle>제목: {roomArr.title}</RoomTitle>
+                    <RoomTitle>제목: {roomArr.roomInfo.title}</RoomTitle>
                     <EnterButton
                       className="enter-button"
                       onClick={() => handleGoToRoom(roomArr)}
@@ -148,7 +148,7 @@ export default function Main() {
                 </RoomWrapper>
               );
             })}
-        </RoomContainer> */}
+        </RoomContainer>
       </Container>
     </>
   );
