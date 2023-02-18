@@ -60,7 +60,7 @@ export default function KakaoRedirectHandler() {
         navigate("/main");
       }
     } catch (err) {
-      console.log("err::", err);
+      console.log("Err:", err);
     }
   };
 

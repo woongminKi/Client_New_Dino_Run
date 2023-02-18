@@ -8,7 +8,7 @@ export default async function Profile() {
   const [nickName, setNickName] = useState();
   const [profileImage, setProfileImage] = useState();
   const dispatch = useDispatch();
-  console.log("ok?");
+
   try {
     // Kakao SDK API를 이용해 사용자 정보 획득
     const data = await window.Kakao.API.request({
@@ -19,7 +19,7 @@ export default async function Profile() {
     setNickName(data.properties.nickname);
     setProfileImage(data.properties.profile_image);
   } catch (err) {
-    console.log(err);
+    console.log("Err:", err);
   }
 
   if (userId && nickName && profileImage) {

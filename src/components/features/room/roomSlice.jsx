@@ -52,7 +52,6 @@ export const roomSlice = createSlice({
       state.roomDbArray = action.payload;
     },
     fetchRoomDB: (state, action) => {
-      console.log("roomSlice에서의 fetchDBList를 위한 값:", action.payload);
       state.fetchDBArray = action.payload;
     },
     saveMyInfoData: (state, action) => {

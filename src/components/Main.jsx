@@ -32,7 +32,6 @@ export default function Main() {
   const roomStatus = useSelector((state) => state.room);
   const { roomList, roomDbArray } = roomStatus;
   const roomUserId = roomStatus.myInfoData.userId;
-  console.log("roomStatus:", roomStatus);
 
   const myInfo = { userId, nickName, profileImage };
 
@@ -46,7 +45,7 @@ export default function Main() {
       setNickName(data.properties.nickname);
       setProfileImage(data.properties.profile_image);
     } catch (err) {
-      console.log(err);
+      console.log("Err:", err);
     }
   };
 
@@ -66,8 +65,8 @@ export default function Main() {
 
   const handleGoToRoom = (data) => {
     const roomId = data._id;
-    const title = data.title;
-    const { userId, nickName, profileImage } = data;
+    const title = data.roomInfo.title;
+    const { userId, nickName, profileImage } = data.author;
 
     socketAction.joinRoom({
       title,
@@ -77,7 +76,7 @@ export default function Main() {
       roomId,
       myInfo,
     });
-    navigate(`/readyRoom/${userId}`);
+    navigate(`/readyRoom/${roomId}`);
   };
 
   if (!getCookie("accessToken")) {
