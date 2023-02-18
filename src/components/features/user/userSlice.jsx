@@ -22,5 +22,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { userInfoRequest, userInfoFailure } = userSlice.actions;
+export const { userInfoRequest, userInfoFailure, checkSocketStatus } =
+  userSlice.actions;
 export default userSlice.reducer;

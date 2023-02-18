@@ -38,23 +38,29 @@ function* roomInfo({ payload }) {
 function* fetchDBList({ payload }) {
   const userId = payload;
 
-  const test = yield axios.get(`${process.env.REACT_APP_SERVER_URL}/ping`);
-  console.log("ping get test:", test.data.result);
+  try {
+    const test = yield axios.get(`${process.env.REACT_APP_SERVER_URL}/ping`);
+    console.log("ping get test:", test.data.result);
 
-  const testPost = yield axios.post(`${process.env.REACT_APP_SERVER_URL}/ping`);
-  console.log("ping post test:", testPost.data.result);
+    const testPost = yield axios.post(
+      `${process.env.REACT_APP_SERVER_URL}/ping`
+    );
+    console.log("ping post test:", testPost.data.result);
 
-  const getRoomArray = yield axios.get(
-    `${process.env.REACT_APP_SERVER_URL}/rooms/${userId}`,
-    {
-      headers: {
-        accessAuthorization: `${getCookie("accessToken")}`,
-        refreshAuthorization: `${getCookie("refreshToken")}`,
-      },
-    }
-  );
-  console.log("로비에 보여질 룸 리스트::", getRoomArray);
-  yield put(responseRoomDB(getRoomArray.data));
+    const getRoomArray = yield axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/rooms/${userId}`,
+      {
+        headers: {
+          accessAuthorization: `${getCookie("accessToken")}`,
+          refreshAuthorization: `${getCookie("refreshToken")}`,
+        },
+      }
+    );
+    console.log("로비에 보여질 룸 리스트::", getRoomArray);
+    yield put(responseRoomDB(getRoomArray.data));
+  } catch (err) {
+    console.log("Room fetchDBList Error::", err);
+  }
 }
 
 function* watchRoomInfo() {
