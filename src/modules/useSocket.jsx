@@ -10,11 +10,11 @@ import {
 
 export const socket = io.connect(process.env.REACT_APP_SERVER_URL, {
   transports: ["websocket"],
-  // withCredentials: true,
+  withCredentials: true,
   cors: {
     origin: process.env.REACT_APP_SERVER_URL,
     // origin: "*",
-    credentials: true,
+    // credentials: true,
   },
 });
 
