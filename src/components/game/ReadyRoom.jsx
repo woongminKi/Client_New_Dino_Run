@@ -23,6 +23,10 @@ export default function ReadyRoom() {
     socketAction.otherPlayerReadyRequest(isReady);
   };
 
+  const startGame = () => {
+    navigate("/gameRoom");
+  };
+
   if (!getCookie("accessToken")) {
     navigate("/");
   }
@@ -43,7 +47,9 @@ export default function ReadyRoom() {
         image={roomStatus.myInfoData.profileImage}
         name={title}
         func={getReadyForGame}
-        children={"준비"}
+        children1={"준비"}
+        startFunc={startGame}
+        children2={"1인 모드 시작"}
       />
 
       <UserWrapper>

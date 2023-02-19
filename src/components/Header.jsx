@@ -2,7 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { MAIN_COLOR_1 } from "../utils/color";
 
-export default function Header({ image, name, func, children, title }) {
+export default function Header({
+  image,
+  name,
+  func,
+  children1,
+  startFunc,
+  children2,
+}) {
   return (
     <HeaderWrapper>
       <ProfileWapper>
@@ -10,8 +17,13 @@ export default function Header({ image, name, func, children, title }) {
         <UserName>{name}</UserName>
       </ProfileWapper>
       <RoomMakeButton className="make-room" onClick={func}>
-        {children}
+        {children1}
       </RoomMakeButton>
+      {children2 && (
+        <RoomMakeButton className="start-game" onClick={startFunc}>
+          {children2}
+        </RoomMakeButton>
+      )}
     </HeaderWrapper>
   );
 }
@@ -24,6 +36,11 @@ const HeaderWrapper = styled.div`
   align-items: center;
 
   .make-room:hover {
+    padding: 15px 50px 15px 50px;
+    transition: all 0.2s linear 0s;
+    color: ${MAIN_COLOR_1};
+  }
+  .start-game:hover {
     padding: 15px 50px 15px 50px;
     transition: all 0.2s linear 0s;
     color: ${MAIN_COLOR_1};

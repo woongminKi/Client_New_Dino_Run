@@ -105,7 +105,7 @@ export default function Main() {
           image={profileImage}
           name={nickName}
           func={handleOpenRoomModal}
-          children={"방만들기"}
+          children1={"방만들기"}
         />
 
         {isOpenModal && (
