@@ -1,4 +1,4 @@
-import io from "socket.io-client";
+import { io } from "socket.io-client";
 import { eventChannel } from "redux-saga";
 import { call, put, take } from "redux-saga/effects";
 import { joinRoom } from "../components/features/room/roomSlice";
