@@ -25,6 +25,7 @@ export const socket = io.connect(
     // cors: "*",
   }
 );
+console.log("소켓 연결됨?", socket.connected);
 
 export const socketAction = {
   joinRoom: (data) => {
