@@ -8,13 +8,21 @@ import {
   getPlayer2Video,
 } from "../components/features/game/gameSlice";
 
-export const socket = io.connect(process.env.REACT_APP_WEBSOCKET_SERVER_URL, {
-  path: "/socket.io",
-  transports: ["websocket"],
-  cors: {
-    origin: process.env.REACT_APP_SERVER_URL,
-  },
-});
+console.log(
+  "REACT_APP_WEBSOCKET_SERVER_URL::",
+  process.env.REACT_APP_WEBSOCKET_SERVER_URL
+);
+console.log("REACT_APP_SERVER_URL::", process.env.REACT_APP_SERVER_URL);
+export const socket = io.connect(
+  `wss://${process.env.REACT_APP_WEBSOCKET_SERVER_URL}`,
+  {
+    path: "/socket.io",
+    transports: ["websocket"],
+    cors: {
+      origin: process.env.REACT_APP_SERVER_URL,
+    },
+  }
+);
 
 export const socketAction = {
   joinRoom: (data) => {
