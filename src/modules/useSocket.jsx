@@ -18,9 +18,10 @@ export const socket = io.connect(
   {
     path: "/socket.io",
     transports: ["websocket"],
-    cors: {
-      origin: process.env.REACT_APP_SERVER_URL,
-    },
+    // cors: {
+    //   origin: process.env.REACT_APP_SERVER_URL,
+    // },
+    cors: "*",
   }
 );
 
