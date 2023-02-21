@@ -25,7 +25,8 @@
     "simple-peer": "^9.11.1",
     "socket.io-client": "^4.5.4",
     "styled-components": "^5.3.6",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "wscat": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
