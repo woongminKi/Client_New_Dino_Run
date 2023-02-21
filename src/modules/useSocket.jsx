@@ -17,6 +17,8 @@ export const socket = io.connect(
   `https://${process.env.REACT_APP_WEBSOCKET_SERVER_URL}`,
   {
     path: "/socket.io",
+    reconnectionAttempts: "Infinity",
+    timeout: 10000,
     transports: ["websocket", "polling", "flashsocket"],
     withCredentials: true,
     // cors: {
