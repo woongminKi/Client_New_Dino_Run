@@ -17,7 +17,7 @@ export const socket = io.connect(
   `wss://${process.env.REACT_APP_WEBSOCKET_SERVER_URL}`,
   {
     path: "/socket.io",
-    transports: ["websocket"],
+    transports: ["websocket", "polling", "flashsocket"],
     // cors: {
     //   origin: process.env.REACT_APP_SERVER_URL,
     // },
