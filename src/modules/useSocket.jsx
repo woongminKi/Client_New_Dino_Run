@@ -14,7 +14,7 @@ console.log(
 );
 console.log("REACT_APP_SERVER_URL::", process.env.REACT_APP_SERVER_URL);
 export const socket = io.connect(
-  `wss://${process.env.REACT_APP_WEBSOCKET_SERVER_URL}`,
+  `https://${process.env.REACT_APP_WEBSOCKET_SERVER_URL}`,
   {
     path: "/socket.io",
     transports: ["websocket", "polling", "flashsocket"],
