@@ -18,10 +18,11 @@ export const socket = io.connect(
   {
     path: "/socket.io",
     transports: ["websocket", "polling", "flashsocket"],
+    withCredentials: true,
     // cors: {
     //   origin: process.env.REACT_APP_SERVER_URL,
     // },
-    cors: "*",
+    // cors: "*",
   }
 );
 
