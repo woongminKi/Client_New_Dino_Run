@@ -26,6 +26,9 @@ export const socket = io.connect(
   }
 );
 console.log("소켓 연결됨?", socket.connected);
+socket.on("connect", function () {
+  console.log("소켓 연결됨?22", socket.connected);
+});
 
 export const socketAction = {
   joinRoom: (data) => {
