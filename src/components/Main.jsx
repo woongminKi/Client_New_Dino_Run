@@ -79,9 +79,17 @@ export default function Main() {
     navigate(`/readyRoom/${roomId}`);
   };
 
-  if (!getCookie("accessToken")) {
+  // if (!getCookie("accessToken")) {
+  //   navigate("/");
+  // }
+  const cookie = getCookie("accessToken");
+  useEffect(() => {
+    console.log("cookie in main:: ", {
+      cookie,
+    });
+    if (cookie) return;
     navigate("/");
-  }
+  }, [cookie, navigate]);
 
   useEffect(() => {
     getProfile();
