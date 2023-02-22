@@ -13,20 +13,17 @@ console.log(
   process.env.REACT_APP_WEBSOCKET_SERVER_URL
 );
 console.log("REACT_APP_SERVER_URL::", process.env.REACT_APP_SERVER_URL);
-export const socket = io.connect(
-  `https://${process.env.REACT_APP_WEBSOCKET_SERVER_URL}`,
-  {
-    path: "/socket.io",
-    reconnectionAttempts: "Infinity",
-    timeout: 10000,
-    transports: ["websocket"],
-    withCredentials: true,
-    // cors: {
-    //   origin: process.env.REACT_APP_SERVER_URL,
-    // },
-    // cors: "*",
-  }
-);
+export const socket = io.connect(`http://3.35.17.159:8000`, {
+  path: "/socket.io",
+  reconnectionAttempts: "Infinity",
+  timeout: 10000,
+  transports: ["websocket"],
+  withCredentials: true,
+  // cors: {
+  //   origin: process.env.REACT_APP_SERVER_URL,
+  // },
+  // cors: "*",
+});
 console.log("소켓 연결됨?", socket.connected);
 socket.on("connect", function () {
   console.log("소켓 연결됨?22", socket.connected);
