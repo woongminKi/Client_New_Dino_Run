@@ -13,7 +13,8 @@ console.log(
   process.env.REACT_APP_WEBSOCKET_SERVER_URL
 );
 console.log("REACT_APP_SERVER_URL::", process.env.REACT_APP_SERVER_URL);
-export const socket = io.connect(`http://3.35.17.159:8000`, {
+// export const socket = io.connect(`http://3.35.17.159:8000`, {
+export const socket = io.connect(process.env.REACT_APP_SERVER_URL, {
   path: "/socket.io",
   reconnectionAttempts: "Infinity",
   timeout: 10000,
