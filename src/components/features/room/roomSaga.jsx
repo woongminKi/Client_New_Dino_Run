@@ -36,6 +36,9 @@ function* roomInfo({ payload }) {
 
 function* fetchDBList({ payload }) {
   const userId = payload;
+  console.log("::: fetchDBList", {
+    payload,
+  });
 
   try {
     const getRoomArray = yield axios.get(
