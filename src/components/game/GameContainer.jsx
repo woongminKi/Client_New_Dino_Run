@@ -9,9 +9,9 @@ export default function GameContainer() {
   const navigate = useNavigate();
   const { myScore, player2Score, isDead } = useSelector((state) => state.game);
 
-  // if (!getCookie("accessToken")) {
-  //   navigate("/");
-  // }
+  if (!getCookie("accessToken")) {
+    navigate("/");
+  }
 
   return (
     <GameWrapper>

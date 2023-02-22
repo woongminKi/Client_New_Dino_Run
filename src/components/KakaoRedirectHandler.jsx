@@ -41,14 +41,14 @@ export default function KakaoRedirectHandler() {
       setCookie("accessToken", res.data.access_token, {
         path: "/",
         sameSite: "none",
-        secure: true,
+        // secure: true,
         maxAge: 604800,
       });
 
       setCookie("refreshToken", res.data.refresh_token, {
         path: "/",
         sameSite: "none",
-        secure: true,
+        // secure: true,
         maxAge: 604800,
       });
 

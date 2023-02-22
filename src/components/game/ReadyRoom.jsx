@@ -27,9 +27,14 @@ export default function ReadyRoom() {
     navigate("/gameRoom");
   };
 
-  // if (!getCookie("accessToken")) {
-  //   navigate("/");
-  // }
+  const cookie = getCookie("accessToken");
+  useEffect(() => {
+    console.log("cookie inn room:: ", {
+      cookie,
+    });
+    if (cookie) return;
+    navigate("/");
+  }, [cookie, navigate]);
 
   useEffect(() => {
     if (myReadyState && player2Ready) {
