@@ -27,9 +27,9 @@ export default function ReadyRoom() {
     navigate("/gameRoom");
   };
 
-  if (!getCookie("accessToken")) {
-    navigate("/");
-  }
+  // if (!getCookie("accessToken")) {
+  //   navigate("/");
+  // }
 
   useEffect(() => {
     if (myReadyState && player2Ready) {
