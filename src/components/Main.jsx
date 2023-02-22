@@ -79,9 +79,9 @@ export default function Main() {
     navigate(`/readyRoom/${roomId}`);
   };
 
-  if (!getCookie("accessToken")) {
-    navigate("/");
-  }
+  // if (!getCookie("accessToken")) {
+  //   navigate("/");
+  // }
 
   useEffect(() => {
     getProfile();
