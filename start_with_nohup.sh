@@ -11,3 +11,4 @@ nohup http-server ./build -p 3000 1 > front_log.out 2>&1 &
 
 # pm2 front start ./front root folder
 pm2 start npm --name "front" -- run start
+pm2 start npm --name "server" -- run dev

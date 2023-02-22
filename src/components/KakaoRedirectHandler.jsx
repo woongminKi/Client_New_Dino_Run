@@ -58,6 +58,7 @@ export default function KakaoRedirectHandler() {
       }
 
       if (res.status === 200) {
+        console.log("::: /main:: ", { res });
         navigate("/main");
       }
     } catch (err) {
