@@ -39,6 +39,7 @@ export default function KakaoRedirectHandler() {
 
       window.Kakao.init(restAPIKey);
       window.Kakao.Auth.setAccessToken(res.data.access_token);
+      console.log("쿠키::", cookies);
       setCookie("accessToken", res.data.access_token, {
         path: "/",
         sameSite: "none",
