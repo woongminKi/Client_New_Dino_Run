@@ -49,6 +49,9 @@ export default function GameCanvas() {
 
   const startVideo = async () => {
     try {
+      console.log("스트림 전 네비게이터1::", navigator);
+      console.log("스트림 전 네비게이터2::", await navigator);
+      console.log("스트림 전33::", await navigator.mediaDevices);
       const stream = await navigator.mediaDevices.getUserMedia({
         video: true,
         audio: true,
