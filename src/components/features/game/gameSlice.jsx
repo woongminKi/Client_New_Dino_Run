@@ -32,6 +32,8 @@ export const gameSlice = createSlice({
     },
     gameFinished(state) {
       state.isDead = true;
+      state.player2Score = 0;
+      state.myScore = 0;
     },
   },
 });

@@ -46,7 +46,6 @@ export const roomSlice = createSlice({
       state.roomList = [];
       state.userData = {};
       state.myInfoData = {};
-
       state.userCount = 0;
       state.profileImage = "";
       state.playStatus = false;
