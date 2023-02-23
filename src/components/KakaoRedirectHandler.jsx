@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequest, loginSuccess } from "./features/auth/authSlice";
 import { setCookie } from "../utils/cookies";
+import { useCookies } from "react-cookie";
 
 import qs from "qs";
 import axios from "axios";
 
 export default function KakaoRedirectHandler() {
-  // const [cookies, setCookie] = useCookies(["name"]);
+  const [cookies, setCookie] = useCookies(["name"]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loginStatus = useSelector((state) => state.auth.loginStatus);
