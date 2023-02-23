@@ -4,8 +4,8 @@ import kakaoImage from "../images/kakao_login_medium_narrow.png";
 
 export default function Home() {
   const clientId = process.env.REACT_APP_CLIENT_API_ID;
-  // const redirectURI = `${process.env.REACT_APP_DINO_URL}/oauth/kakao/callback`; //배포
-  const redirectURI = `${process.env.REACT_APP_CLIENT_URL}/oauth/kakao/callback`; //로컬
+  const redirectURI = `${process.env.REACT_APP_DINO_URL}/oauth/kakao/callback`; //배포
+  // const redirectURI = `${process.env.REACT_APP_CLIENT_URL}/oauth/kakao/callback`; //로컬
   console.log("Home:: ", {
     redirectURI,
   });
