@@ -32,6 +32,7 @@ export default function Main() {
   const roomStatus = useSelector((state) => state.room);
   const { roomList, roomDbArray } = roomStatus;
   const roomUserId = roomStatus.myInfoData.userId;
+  const accessToken = sessionStorage.getItem("accessToken");
 
   const myInfo = { userId, nickName, profileImage };
 
@@ -79,9 +80,6 @@ export default function Main() {
     navigate(`/readyRoom/${roomId}`);
   };
 
-  const accessToken = sessionStorage.getItem("accessToken");
-  console.log("accessToken::", accessToken);
-
   // if (!getCookie("accessToken")) {
   //   navigate("/");
   // }
@@ -95,6 +93,10 @@ export default function Main() {
   // }, [cookie, navigate]);
 
   useEffect(() => {
+    if (!accessToken) {
+      navigate("/");
+    }
+
     getProfile();
     dispatch(fetchRoomDB(roomUserId));
     dispatch(readyRequest(false));

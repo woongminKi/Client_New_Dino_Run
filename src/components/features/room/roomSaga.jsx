@@ -1,7 +1,6 @@
 import axios from "axios";
 import { all, fork, put, takeLatest } from "redux-saga/effects";
 import { roomRegister, responseRoomDB, fetchRoomDB } from "./roomSlice";
-import { getCookie } from "../../../utils/cookies.jsx";
 
 const accessToken = sessionStorage.getItem("accessToken");
 const refreshToken = sessionStorage.getItem("refreshToken");
@@ -10,10 +9,6 @@ console.log("refreshToken::", refreshToken);
 
 function* roomInfo({ payload }) {
   const { title, userId, nickName, profileImage } = payload;
-  // const accessToken = sessionStorage.getItem("accessToken");
-  // const refreshToken = sessionStorage.getItem("refreshToken");
-  // console.log("accessToken::", accessToken);
-  // console.log("refreshToken::", refreshToken);
 
   try {
     yield axios.post(`${process.env.REACT_APP_SERVER_URL}/rooms/${userId}`, {
@@ -23,8 +18,8 @@ function* roomInfo({ payload }) {
       profileImage,
       headers: {
         // accessAuthorization: `${getCookie("accessToken")}`,
-        accessAuthorization: accessToken,
         // refreshAuthorization: `${getCookie("refreshToken")}`,
+        accessAuthorization: accessToken,
         refreshAuthorization: refreshToken,
       },
     });

@@ -2,22 +2,18 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequest, loginSuccess } from "./features/auth/authSlice";
-import { setCookie } from "../utils/cookies.jsx";
-// import { useCookies } from "react-cookie";
 
 import qs from "qs";
 import axios from "axios";
-import session from "redux-persist/lib/storage/session";
 
 export default function KakaoRedirectHandler() {
-  // const [cookies, setCookie] = useCookies(["name"]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loginStatus = useSelector((state) => state.auth.loginStatus);
 
   const restAPIKey = `${process.env.REACT_APP_CLIENT_API_ID}`;
-  const redirectURI = `${process.env.REACT_APP_DINO_URL}/oauth/kakao/callback`;
-  // const redirectURI = `${process.env.REACT_APP_CLIENT_URL}/oauth/kakao/callback`;
+  // const redirectURI = `${process.env.REACT_APP_DINO_URL}/oauth/kakao/callback`; //배포
+  const redirectURI = `${process.env.REACT_APP_CLIENT_URL}/oauth/kakao/callback`; //로컬
   // const clientSecret = process.env.REACT_APP_CLIENT_SECRET_ID;
   const grantType = "authorization_code";
 
@@ -29,7 +25,6 @@ export default function KakaoRedirectHandler() {
       client_id: restAPIKey,
       redirect_uri: redirectURI,
       code,
-      // client_secret: clientSecret,
     });
 
     try {

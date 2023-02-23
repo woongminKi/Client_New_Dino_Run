@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -7,11 +7,14 @@ import { getCookie } from "../../utils/cookies.jsx";
 
 export default function GameContainer() {
   const navigate = useNavigate();
+  const accessToken = sessionStorage.getItem("accessToken");
   const { myScore, player2Score, isDead } = useSelector((state) => state.game);
 
-  // if (!getCookie("accessToken")) {
-  //   navigate("/");
-  // }
+  useEffect(() => {
+    if (!accessToken) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <GameWrapper>

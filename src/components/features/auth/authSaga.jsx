@@ -3,6 +3,7 @@ import { all, fork, put, takeLatest } from "redux-saga/effects";
 import { loginRequest, loginFailure } from "./authSlice";
 
 function* userLogin({ payload }) {
+  console.log("로그인 했을 때 데이터:", payload);
   const { data } = payload.res;
 
   const accessToken = data.access_token;

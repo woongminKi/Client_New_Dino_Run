@@ -15,6 +15,7 @@ export default function ReadyRoom() {
   const { myReadyState, player2Ready } = useSelector((state) => state.game);
   const { authorInfo, myInfo } = roomStatus.userData;
   const { title } = roomStatus;
+  const accessToken = sessionStorage.getItem("accessToken");
 
   const getReadyForGame = () => {
     setIsReady((current) => !current);
@@ -43,6 +44,10 @@ export default function ReadyRoom() {
   }, [myReadyState, player2Ready]);
 
   useEffect(() => {
+    if (!accessToken) {
+      navigate("/");
+    }
+
     dispatch(readyRequest(isReady));
   }, []);
 
