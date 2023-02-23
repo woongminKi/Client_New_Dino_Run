@@ -32,8 +32,8 @@ export default function GameCanvas() {
   const detectRef = useRef(null);
   const gameResource = useRef(null);
 
-  console.log("::: videoRef:::", videoRef);
-  console.log("::: detectRef:::", detectRef);
+  // console.log("::: videoRef:::", videoRef);
+  // console.log("::: detectRef:::", detectRef);
 
   const [score, setScore] = useState(0);
   const [isCollision, setIsCollision] = useState(false);
@@ -55,21 +55,12 @@ export default function GameCanvas() {
       console.log("스트림 전 네비게이터1::", navigator);
       console.log("스트림 전 네비게이터2::", await navigator);
       console.log("스트림 전33::", await navigator.mediaDevices);
-
-      // const stream = await navigator.mediaDevices.getUserMedia({
-      //   video: true,
-      //   audio: true,
-      //   width: videoWidth,
-      //   height: videoHeight,
-      // });
-      const stream = navigator.mediaDevices
-        .getUserMedia({ video: true })
-        .then(function (stream) {
-          video.srcObject = stream;
-        })
-        .catch(function (err) {
-          console.log(err);
-        });
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: true,
+        width: videoWidth,
+        height: videoHeight,
+      });
       console.log("stream::", stream);
 
       const video = videoRef.current;
@@ -180,7 +171,7 @@ export default function GameCanvas() {
         dino.draw();
         ground.draw();
 
-        handleVideoOnPlay();
+        await handleVideoOnPlay();
       };
       drawGame();
       await startVideo();
