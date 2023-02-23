@@ -10,6 +10,7 @@ import axios from "axios";
 
 export default function KakaoRedirectHandler() {
   const [cookies, setCookie] = useCookies(["name"]);
+  console.log("쿠키::", cookies);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loginStatus = useSelector((state) => state.auth.loginStatus);
@@ -39,7 +40,6 @@ export default function KakaoRedirectHandler() {
 
       window.Kakao.init(restAPIKey);
       window.Kakao.Auth.setAccessToken(res.data.access_token);
-      console.log("쿠키::", cookies);
       setCookie("accessToken", res.data.access_token, {
         path: "/",
         sameSite: "none",
