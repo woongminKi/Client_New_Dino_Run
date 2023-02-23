@@ -11,6 +11,7 @@ import {
   totalRoomUsers,
   fetchRoomDB,
   saveMyInfoData,
+  clearRoom,
 } from "./features/room/roomSlice";
 import {
   readyRequest,
@@ -79,6 +80,10 @@ export default function Main() {
     navigate(`/readyRoom/${roomId}`);
   };
 
+  const handleLogout = () => {
+    sessionStorage.removeItem("accessToken");
+  };
+
   useEffect(() => {
     if (!accessToken) {
       navigate("/");
@@ -88,7 +93,7 @@ export default function Main() {
     dispatch(fetchRoomDB(roomUserId));
     dispatch(readyRequest(false));
     dispatch(otherPlayerReadyRequest(false));
-    // dispatch(clearRoom());
+    dispatch(clearRoom());
   }, []);
 
   useEffect(() => {
@@ -104,8 +109,10 @@ export default function Main() {
         <Header
           image={profileImage}
           name={nickName}
-          func={handleOpenRoomModal}
+          func1={handleOpenRoomModal}
           children1={"방만들기"}
+          func2={handleLogout}
+          children2={"로그아웃"}
         />
 
         {isOpenModal && (

@@ -5,9 +5,9 @@ import { MAIN_COLOR_1 } from "../utils/color";
 export default function Header({
   image,
   name,
-  func,
+  func1,
   children1,
-  startFunc,
+  func2,
   children2,
 }) {
   return (
@@ -16,11 +16,11 @@ export default function Header({
         <ProfileImage src={image} alt="프로필 사진" />
         <UserName>{name}</UserName>
       </ProfileWapper>
-      <RoomMakeButton className="make-room" onClick={func}>
+      <RoomMakeButton className="action1" onClick={func1}>
         {children1}
       </RoomMakeButton>
       {children2 && (
-        <RoomMakeButton className="start-game" onClick={startFunc}>
+        <RoomMakeButton className="action2" onClick={func2}>
           {children2}
         </RoomMakeButton>
       )}
@@ -35,12 +35,12 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  .make-room:hover {
+  .action1:hover {
     padding: 15px 50px 15px 50px;
     transition: all 0.2s linear 0s;
     color: ${MAIN_COLOR_1};
   }
-  .start-game:hover {
+  .action2:hover {
     padding: 15px 50px 15px 50px;
     transition: all 0.2s linear 0s;
     color: ${MAIN_COLOR_1};

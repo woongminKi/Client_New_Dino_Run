@@ -46,9 +46,9 @@ export default function ReadyRoom() {
       <Header
         image={roomStatus.myInfoData.profileImage}
         name={title}
-        func={getReadyForGame}
+        func1={getReadyForGame}
         children1={"준비"}
-        startFunc={startGame}
+        func2={startGame}
         children2={"1인 모드 시작"}
       />
 
