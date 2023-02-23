@@ -10,7 +10,6 @@ import axios from "axios";
 
 export default function KakaoRedirectHandler() {
   const [cookies, setCookie] = useCookies(["name"]);
-  console.log("쿠키::", cookies);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loginStatus = useSelector((state) => state.auth.loginStatus);
@@ -67,10 +66,9 @@ export default function KakaoRedirectHandler() {
       console.log("Err:", err);
     }
   };
-
+  console.log("쿠키::", cookies);
   useEffect(() => {
     getToken();
   }, []);
-
   return null;
 }
