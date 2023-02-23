@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Header from "../Header";
 import { readyRequest } from "../features/game/gameSlice";
 import { socketAction } from "../../modules/useSocket";
-import { getCookie } from "../../utils/cookies";
+import { getCookie } from "../../utils/cookies.jsx";
 
 export default function ReadyRoom() {
   const [isReady, setIsReady] = useState(false);
@@ -27,14 +27,14 @@ export default function ReadyRoom() {
     navigate("/gameRoom");
   };
 
-  const cookie = getCookie("accessToken");
-  useEffect(() => {
-    console.log("cookie inn room:: ", {
-      cookie,
-    });
-    if (cookie) return;
-    navigate("/");
-  }, [cookie, navigate]);
+  // const cookie = getCookie("accessToken");
+  // useEffect(() => {
+  //   console.log("cookie inn room:: ", {
+  //     cookie,
+  //   });
+  //   if (cookie) return;
+  //   navigate("/");
+  // }, [cookie, navigate]);
 
   useEffect(() => {
     if (myReadyState && player2Ready) {

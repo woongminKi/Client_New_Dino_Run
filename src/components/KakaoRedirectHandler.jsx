@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequest, loginSuccess } from "./features/auth/authSlice";
-import { setCookie } from "../utils/cookies";
+import { setCookie } from "../utils/cookies.jsx";
 // import { useCookies } from "react-cookie";
 
 import qs from "qs";
@@ -42,19 +42,19 @@ export default function KakaoRedirectHandler() {
       window.Kakao.Auth.setAccessToken(res.data.access_token);
       sessionStorage.setItem("accessToken", res.data.access_token);
       sessionStorage.setItem("refreshToken", res.data.refresh_token);
-      setCookie("accessToken", res.data.access_token, {
-        path: "/",
-        sameSite: "none",
-        // secure: true,
-        maxAge: 604800,
-      });
+      // setCookie("accessToken", res.data.access_token, {
+      //   path: "/",
+      //   sameSite: "none",
+      //   // secure: true,
+      //   maxAge: 604800,
+      // });
 
-      setCookie("refreshToken", res.data.refresh_token, {
-        path: "/",
-        sameSite: "none",
-        // secure: true,
-        maxAge: 604800,
-      });
+      // setCookie("refreshToken", res.data.refresh_token, {
+      //   path: "/",
+      //   sameSite: "none",
+      //   // secure: true,
+      //   maxAge: 604800,
+      // });
 
       if (!loginStatus) {
         dispatch(loginRequest({ res }));

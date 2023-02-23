@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import * as faceApi from "face-api.js";
-import { getCookie } from "../../utils/cookies";
+import { getCookie } from "../../utils/cookies.jsx";
 
 import { socketAction } from "../../modules/useSocket";
 import {
@@ -48,9 +48,9 @@ export default function GameCanvas() {
   const backGroundImage = new Image();
   backGroundImage.src = groundImage;
 
-  if (!getCookie("accessToken")) {
-    navigate("/");
-  }
+  // if (!getCookie("accessToken")) {
+  //   navigate("/");
+  // }
 
   const startVideo = async () => {
     try {
