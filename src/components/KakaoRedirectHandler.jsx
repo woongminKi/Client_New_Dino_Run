@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequest, loginSuccess } from "./features/auth/authSlice";
 import { setCookie } from "../utils/cookies";
-import { useCookies } from "react-cookie";
+// import { useCookies } from "react-cookie";
 
 import qs from "qs";
 import axios from "axios";
+import session from "redux-persist/lib/storage/session";
 
 export default function KakaoRedirectHandler() {
-  const [cookies, setCookie] = useCookies(["name"]);
+  // const [cookies, setCookie] = useCookies(["name"]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loginStatus = useSelector((state) => state.auth.loginStatus);
@@ -39,6 +40,8 @@ export default function KakaoRedirectHandler() {
 
       window.Kakao.init(restAPIKey);
       window.Kakao.Auth.setAccessToken(res.data.access_token);
+      sessionStorage.setItem("accessToken", res.data.access_token);
+      sessionStorage.setItem("refreshToken", res.data.refresh_token);
       setCookie("accessToken", res.data.access_token, {
         path: "/",
         sameSite: "none",
@@ -66,7 +69,7 @@ export default function KakaoRedirectHandler() {
       console.log("Err:", err);
     }
   };
-  console.log("쿠키::", cookies);
+
   useEffect(() => {
     getToken();
   }, []);

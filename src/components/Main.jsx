@@ -79,6 +79,9 @@ export default function Main() {
     navigate(`/readyRoom/${roomId}`);
   };
 
+  const accessToken = sessionStorage.getItem("accessToken");
+  console.log("accessToken::", accessToken);
+
   // if (!getCookie("accessToken")) {
   //   navigate("/");
   // }
