@@ -14,7 +14,7 @@ export default function KakaoRedirectHandler() {
   const restAPIKey = `${process.env.REACT_APP_CLIENT_API_ID}`;
   const redirectURI = `${process.env.REACT_APP_DINO_URL}/oauth/kakao/callback`; //배포
   // const redirectURI = `${process.env.REACT_APP_CLIENT_URL}/oauth/kakao/callback`; //로컬
-  // const clientSecret = process.env.REACT_APP_CLIENT_SECRET_ID;
+
   const grantType = "authorization_code";
 
   const code = new URL(window.location.href).searchParams.get("code");
@@ -37,19 +37,6 @@ export default function KakaoRedirectHandler() {
       window.Kakao.Auth.setAccessToken(res.data.access_token);
       sessionStorage.setItem("accessToken", res.data.access_token);
       sessionStorage.setItem("refreshToken", res.data.refresh_token);
-      // setCookie("accessToken", res.data.access_token, {
-      //   path: "/",
-      //   sameSite: "none",
-      //   // secure: true,
-      //   maxAge: 604800,
-      // });
-
-      // setCookie("refreshToken", res.data.refresh_token, {
-      //   path: "/",
-      //   sameSite: "none",
-      //   // secure: true,
-      //   maxAge: 604800,
-      // });
 
       if (!loginStatus) {
         dispatch(loginRequest({ res }));
@@ -57,7 +44,6 @@ export default function KakaoRedirectHandler() {
       }
 
       if (res.status === 200) {
-        console.log("::: /main:: ", { res });
         navigate("/main");
       }
     } catch (err) {

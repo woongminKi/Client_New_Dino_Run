@@ -6,7 +6,6 @@ const initialState = {
   faceEmotionHappyScore: 0,
   myScore: 0,
   player2Score: 0,
-  player2Video: null,
   isDead: false,
 };
 
@@ -31,9 +30,6 @@ export const gameSlice = createSlice({
     getPlayer2Score: (state, action) => {
       state.player2Score = action.payload;
     },
-    getPlayer2Video: (state, action) => {
-      // state.player2Video = action.payload;
-    },
     gameFinished(state) {
       state.isDead = true;
     },
@@ -46,7 +42,6 @@ export const {
   getFaceEmotion,
   getMyScore,
   getPlayer2Score,
-  getPlayer2Video,
   gameFinished,
 } = gameSlice.actions;
 export default gameSlice.reducer;

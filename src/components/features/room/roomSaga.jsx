@@ -4,8 +4,6 @@ import { roomRegister, responseRoomDB, fetchRoomDB } from "./roomSlice";
 
 const accessToken = sessionStorage.getItem("accessToken");
 const refreshToken = sessionStorage.getItem("refreshToken");
-console.log("accessToken::", accessToken);
-console.log("refreshToken::", refreshToken);
 
 function* roomInfo({ payload }) {
   const { title, userId, nickName, profileImage } = payload;
@@ -17,8 +15,6 @@ function* roomInfo({ payload }) {
       nickName,
       profileImage,
       headers: {
-        // accessAuthorization: `${getCookie("accessToken")}`,
-        // refreshAuthorization: `${getCookie("refreshToken")}`,
         accessAuthorization: accessToken,
         refreshAuthorization: refreshToken,
       },
@@ -30,8 +26,6 @@ function* roomInfo({ payload }) {
         headers: {
           accessAuthorization: accessToken,
           refreshAuthorization: refreshToken,
-          // accessAuthorization: `${getCookie("accessToken")}`,
-          // refreshAuthorization: `${getCookie("refreshToken")}`,
         },
       }
     );
@@ -44,17 +38,12 @@ function* roomInfo({ payload }) {
 
 function* fetchDBList({ payload }) {
   const userId = payload;
-  console.log("::: fetchDBList", {
-    payload,
-  });
 
   try {
     const getRoomArray = yield axios.get(
       `${process.env.REACT_APP_SERVER_URL}/rooms/${userId}`,
       {
         headers: {
-          // accessAuthorization: `${getCookie("accessToken")}`,
-          // refreshAuthorization: `${getCookie("refreshToken")}`,
           accessAuthorization: accessToken,
           refreshAuthorization: refreshToken,
         },

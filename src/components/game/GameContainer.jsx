@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import GameCanvas from "./GameCanvas";
-import { getCookie } from "../../utils/cookies.jsx";
 
 export default function GameContainer() {
   const navigate = useNavigate();

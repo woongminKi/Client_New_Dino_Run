@@ -17,8 +17,7 @@ import {
   otherPlayerReadyRequest,
 } from "./features/game/gameSlice";
 import { MAIN_COLOR_1 } from "../utils/color";
-import { socket, socketAction } from "../modules/useSocket";
-import { getCookie } from "../utils/cookies";
+import { socketAction } from "../modules/useSocket";
 
 export default function Main() {
   const [userId, setUserId] = useState("");
@@ -30,7 +29,7 @@ export default function Main() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const roomStatus = useSelector((state) => state.room);
-  const { roomList, roomDbArray } = roomStatus;
+  const { roomDbArray } = roomStatus;
   const roomUserId = roomStatus.myInfoData.userId;
   const accessToken = sessionStorage.getItem("accessToken");
 
@@ -79,18 +78,6 @@ export default function Main() {
     });
     navigate(`/readyRoom/${roomId}`);
   };
-
-  // if (!getCookie("accessToken")) {
-  //   navigate("/");
-  // }
-  // const cookie = getCookie("accessToken");
-  // useEffect(() => {
-  //   console.log("cookie in main:: ", {
-  //     cookie,
-  //   });
-  //   if (cookie) return;
-  //   navigate("/");
-  // }, [cookie, navigate]);
 
   useEffect(() => {
     if (!accessToken) {

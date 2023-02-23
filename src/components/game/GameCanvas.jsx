@@ -32,9 +32,6 @@ export default function GameCanvas() {
   const detectRef = useRef(null);
   const gameResource = useRef(null);
 
-  // console.log("::: videoRef:::", videoRef);
-  // console.log("::: detectRef:::", detectRef);
-
   const [score, setScore] = useState(0);
   const [isCollision, setIsCollision] = useState(false);
 
@@ -52,20 +49,14 @@ export default function GameCanvas() {
 
   const startVideo = async () => {
     try {
-      console.log("스트림 전 네비게이터1::", navigator);
-      console.log("스트림 전 네비게이터2::", await navigator);
-      console.log("스트림 전33::", await navigator.mediaDevices);
       const stream = await navigator.mediaDevices.getUserMedia({
         video: true,
         audio: true,
         width: videoWidth,
         height: videoHeight,
       });
-      console.log("stream::", stream);
 
       const video = videoRef.current;
-      console.log("video::", video);
-
       video.srcObject = stream;
       video.play();
     } catch (err) {
@@ -171,7 +162,7 @@ export default function GameCanvas() {
         dino.draw();
         ground.draw();
 
-        await handleVideoOnPlay();
+        handleVideoOnPlay();
       };
       drawGame();
       await startVideo();
@@ -187,7 +178,6 @@ export default function GameCanvas() {
 
   useEffect(() => {
     if (faceEmotionHappyScore >= 0.999999) {
-      // 딱 처음 또는 마지막 스코어만 캐치하는게 관건
       const event = new Event("jump");
       document.dispatchEvent(event);
     }
