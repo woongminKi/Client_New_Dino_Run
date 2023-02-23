@@ -44,9 +44,12 @@ export const roomSlice = createSlice({
     clearRoom: (state) => {
       state.users = [];
       state.roomList = [];
-      state.userCount = 0;
       state.userData = {};
       state.myInfoData = {};
+
+      state.userCount = 0;
+      state.profileImage = "";
+      state.playStatus = false;
     },
     responseRoomDB: (state, action) => {
       state.roomDbArray = action.payload;
