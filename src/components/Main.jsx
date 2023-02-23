@@ -82,6 +82,8 @@ export default function Main() {
 
   const handleLogout = () => {
     sessionStorage.removeItem("accessToken");
+    sessionStorage.removeItem("refreshToken");
+
     navigate("/");
   };
 
