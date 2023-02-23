@@ -82,6 +82,7 @@ export default function Main() {
 
   const handleLogout = () => {
     sessionStorage.removeItem("accessToken");
+    navigate("/");
   };
 
   useEffect(() => {
