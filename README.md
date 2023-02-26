@@ -9,7 +9,8 @@
 
 https://user-images.githubusercontent.com/96522144/158065592-c8e80a69-4aaf-4ada-82d4-909f59805ad0.mov
 
-배포 사이트 : https://www.dino-run.site/
+배포 사이트 : http://dino-run.site/
+cf) 크롬 시크릿 모드로 실행해주세요.
 
 ## 🚀 ShortCut
 
@@ -30,8 +31,9 @@ https://user-images.githubusercontent.com/96522144/158065592-c8e80a69-4aaf-4ada-
 
 |                                          |                                          |
 | ---------------------------------------- | ---------------------------------------- | 
-|<div><p align="center"><img width="1000" src="https://user-images.githubusercontent.com/96522144/160890784-a65f525b-e5a1-44a6-b074-928ec26292e2.png"/></p><p align="center">👉 소셜 로그인(Google)로 로그인을 할 수 있습니다.</p></div>|<div><p align="center"><img width="1000" src="https://user-images.githubusercontent.com/96522144/159103191-218f8f2a-d9fb-4770-afb1-83982236c771.gif" /></p></div><div align="center">👉 플레어이어는 방을 생성해 상대 플레이어와 실시간 대전을 할 수 있습니다.</div>
-|<div><p align="center"><img width="1000" src="https://user-images.githubusercontent.com/96522144/159103217-d20b567a-5224-4593-aaae-92156e8d8ed6.gif" /></p><p align="center" fontsize="3">👉 방장은 게임을 시작, 방 삭제를 할 수 있으며 게임 시작을 누르면 게임이 시작됩니다.</p><p align="center" fontsize="3">👉 방 삭제를 누르면 상대 플레이어에게 방이 삭제됐다는 알림이 뜹니다.</p><p align="center" fontsize="3">👉 방 나가기를 누르면 누른 플레이어는 로비로 나가게 되고, 상대방 화면에서는 사라지게 됩니다.</p></div>|<div><p align="center"><img width="500" src="https://user-images.githubusercontent.com/96522144/159103322-c4b844d1-4786-4b17-88ab-33caa21112d6.gif" /></p><p align="center">👉 게임이 시작하면 카메라가 켜지며 안면 인식을 시작함과 동시에 웃는 얼굴(Happy)일 때 캐릭터가 점프를 합니다. 스페이스바로도 조작 할 수 있습니다.</p><p align="center">👉 실시간으로 상대방의 점수가 화면에 나타나며 그에 따른 승 패 여부도 실시간으로 확인 할 수 있습니다.</p><p align="center">👉 장애물에 부딪히면 게임이 종료되며 방을 나갈 수 있습니다.</p></div>|
+|<div><p align="center"><img width="700" src="https://user-images.githubusercontent.com/96522144/221414117-a5b81e5c-b79b-4e15-98bf-5ef907b3b609.png"/></p><p align="center">👉 소셜 로그인(Kakao)로 로그인을 할 수 있습니다.</p></div>|<div><p align="center"><img width="700" src="https://user-images.githubusercontent.com/96522144/221416054-8a9c6ccc-308d-4318-9621-b38b72844d62.gif" /></p></div><div align="center">👉 플레어이어는 방을 만들고 입장하면 상대방 입장 여부가 나의 화면에 실시간으로 보여집니다.</div>
+|<div><p align="center"><img width="700" src="https://user-images.githubusercontent.com/96522144/221416220-16fbf262-f23a-457b-8c00-afaa75232d76.gif" /></p><p align="center" fontsize="3">👉 Ready 상태가 나와 상대방 화면에 실시간으로 보여지며, 두 플레이어 모두 Ready이면 게임이 시작됩니다.</p></div>|<div><p align="center"><img width="700" src="https://user-images.githubusercontent.com/96522144/221416379-52e6289e-4d4c-4882-855b-6ccb878dbaec.gif" /></p><p align="center">👉 게임이 시작하면 카메라가 켜지며 안면 인식을 시작함과 동시에 웃는 얼굴(Happy)일 때 캐릭터가 점프를 합니다. 스페이스바로도 조작 할 수 있습니다.</p><p align="center">👉 실시간으로 상대방의 점수가 화면에 나타나며 그에 따른 승 패 여부도 실시간으로 확인 할 수 있습니다.</p><p align="center">👉 장애물에 부딪히면 게임이 종료되며 방을 나갈 수 있습니다.</p></div>|<div><p align="center"><img width="700" src="https://user-images.githubusercontent.com/96522144/221416455-6cdc3482-cf2a-418c-9e3a-1284fb358741.gif" /></p><p align="center" fontsize="3">👉 게임이 종료된 후, 나가기 버튼을 누르면 로비로 나가집니다.</p><p align="center" fontsize="3">👉 로그아웃 버튼을 누르면 계정은 로그아웃이 되며 로그인 화면으로 넘어갑니다.</p></div>
+
 
 ## 🖥 Tech Stack
 
