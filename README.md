@@ -9,8 +9,11 @@
 
 https://user-images.githubusercontent.com/96522144/158065592-c8e80a69-4aaf-4ada-82d4-909f59805ad0.mov
 
-배포 사이트 : http://dino-run.site/
+### 📌배포 사이트 : http://dino-run.site/
 cf) 크롬 시크릿 모드로 실행해주세요.
+
+- Frontend: Netlify
+- Backend: AWS EC2
 
 ## 🚀 ShortCut
 
@@ -78,7 +81,8 @@ npm run start
 ```
 REACT_APP_CLIENT_API_ID=YOUR KAKAO CLIENT ID
 REACT_APP_CLIENT_URL=http://localhost:3000
-REACT_APP_SERVER_URL=http://localhost:8000
+REACT_APP_SERVER_URL=http://dino-run.site:8000
+REACT_APP_DINO_URL=http://dino-run.site
 ```
 
 - Backend
@@ -92,7 +96,7 @@ npm run dev
 PORT=8000
 SECRET_KEY=YOUR SECRET KEY
 NEW_MONGO_URL=YOUR MONGO DB URL
-CLIENT_URL=http://localhost:3000
+CLIENT_URL=http://dino-run.site
 ```
 
 ## 🔥 Challenge
