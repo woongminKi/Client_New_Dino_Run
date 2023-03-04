@@ -9,7 +9,7 @@
 
 https://user-images.githubusercontent.com/96522144/158065592-c8e80a69-4aaf-4ada-82d4-909f59805ad0.mov
 
-### 📌배포 사이트 : http://dino-run.site/ (크롬 시크릿 모드로 실행해주세요.)
+### 📌배포 사이트 : http://dino-run.site/ (크롬 시크릿 모드에서 주소를 복사, 붙여넣기 해 실행해주세요.)
 
 - Frontend: Netlify
 - Backend: AWS EC2
